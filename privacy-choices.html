@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Choices - Scroll Sense</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            margin-top: 30px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight-box strong {
+            color: #667eea;
+        }
+        
+        .action-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .action-box strong {
+            color: #2e7d32;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+        
+        .email-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .email-link:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        strong {
+            color: #333;
+        }
+        
+        .step {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 Your Privacy Choices</h1>
+            <p>Scroll Sense</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Your Privacy Rights</h2>
+                <p>
+                    At Scroll Sense, we respect your privacy and give you control over your personal data. This page explains how you can exercise your privacy rights, including those under GDPR, CCPA, and other privacy laws.
+                </p>
+            </div>
+            
+            <div class="section">
+                <h2>1. Access Your Data</h2>
+                <p>You have the right to access all personal data we have collected about you.</p>
+                
+                <div class="action-box">
+                    <strong>📱 How to Access Your Data in the App:</strong>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>Open the Scroll Sense app</strong>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>Go to Settings</strong> (tap the Settings tab at the bottom)
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>Tap "Export Data"</strong> (under Account & Privacy section)
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <strong>Your data will be exported</strong> as a JSON file that you can save or share
+                    </div>
+                </div>
+                
+                <p><strong>What's Included:</strong></p>
+                <ul>
+                    <li>Your account information (email address)</li>
+                    <li>All journal entries</li>
+                    <li>Mood tracking data</li>
+                    <li>Social media usage data</li>
+                    <li>Goals and achievements</li>
+                    <li>App settings and preferences</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>2. Delete Your Data</h2>
+                <p>You have the right to request deletion of your personal data at any time.</p>
+                
+                <div class="action-box">
+                    <strong>🗑️ How to Delete Your Account and Data:</strong>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>Open the Scroll Sense app</strong>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>Go to Settings</strong> (tap the Settings tab at the bottom)
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>Scroll to "About" section</strong>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <strong>Tap "Delete Account"</strong>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <strong>Confirm deletion</strong> - All your data will be permanently deleted within 30 days
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <strong>⚠️ Important:</strong> Account deletion is permanent and cannot be undone. All your data, including journal entries, mood data, and account information, will be permanently deleted within 30 days.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>3. Modify Your Data</h2>
+                <p>You can modify your personal data directly in the app:</p>
+                <ul>
+                    <li><strong>Edit Journal Entries:</strong> Open any journal entry and tap "Edit"</li>
+                    <li><strong>Update Profile:</strong> Go to Settings → Edit your username and profile picture</li>
+                    <li><strong>Change Goals:</strong> Go to Goals feature → Edit or delete goals</li>
+                    <li><strong>Update Settings:</strong> Go to Settings → Modify any app preferences</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>4. Opt-Out of Data Collection</h2>
+                <p>You can limit data collection in several ways:</p>
+                
+                <h3>4.1 Opt-Out of AI Analysis</h3>
+                <p>If you don't want your content analyzed by third-party AI services:</p>
+                <ul>
+                    <li>Simply don't use the "Content Analysis" feature</li>
+                    <li>Don't use the "AI Assistant" feature</li>
+                    <li>Your content will not be sent to Anthropic or OpenAI</li>
+                </ul>
+                
+                <h3>4.2 Disable Notifications</h3>
+                <p>To stop receiving notifications:</p>
+                <ul>
+                    <li>Go to Settings → Toggle off notification preferences</li>
+                    <li>Or disable notifications in iOS Settings → Scroll Sense</li>
+                </ul>
+                
+                <h3>4.3 Limit Data Collection</h3>
+                <p>To minimize data collection:</p>
+                <ul>
+                    <li>Don't create journal entries (if you don't want mood data stored)</li>
+                    <li>Don't use daily check-ins (if you don't want usage data stored)</li>
+                    <li>Note: Some data (like account email) is required for app functionality</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>5. Request Data Deletion via Email</h2>
+                <p>If you prefer to request data deletion via email, or if you have trouble accessing the app:</p>
+                
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:scrollsensemarketing@gmail.com?subject=Data Deletion Request" class="email-link">scrollsensemarketing@gmail.com</a></p>
+                    <p><strong>Subject Line:</strong> Data Deletion Request</p>
+                    <p><strong>Include in your email:</strong></p>
+                    <ul>
+                        <li>Your email address associated with the account</li>
+                        <li>Confirmation that you want to delete your account and all data</li>
+                        <li>Any specific data you want deleted (or "all data")</li>
+                    </ul>
+                    <p><strong>Response Time:</strong> We will process your request within 30 days</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>6. Request Data Access via Email</h2>
+                <p>If you need a copy of your data and prefer email:</p>
+                
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:scrollsensemarketing@gmail.com?subject=Data Access Request" class="email-link">scrollsensemarketing@gmail.com</a></p>
+                    <p><strong>Subject Line:</strong> Data Access Request</p>
+                    <p><strong>Include in your email:</strong></p>
+                    <ul>
+                        <li>Your email address associated with the account</li>
+                        <li>Request for a copy of your personal data</li>
+                    </ul>
+                    <p><strong>Response Time:</strong> We will provide your data within 30 days</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>7. File a Privacy Complaint</h2>
+                <p>If you have concerns about how we handle your data:</p>
+                
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:scrollsensemarketing@gmail.com?subject=Privacy Complaint" class="email-link">scrollsensemarketing@gmail.com</a></p>
+                    <p><strong>Subject Line:</strong> Privacy Complaint</p>
+                    <p>We will investigate and respond to your complaint within 30 days.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>8. California Privacy Rights (CCPA)</h2>
+                <p>If you are a California resident, you have additional rights:</p>
+                <ul>
+                    <li><strong>Right to Know:</strong> Request information about what personal information we collect, use, and share</li>
+                    <li><strong>Right to Delete:</strong> Request deletion of your personal information</li>
+                    <li><strong>Right to Opt-Out:</strong> Opt-out of the sale of personal information (we do not sell your data)</li>
+                    <li><strong>Non-Discrimination:</strong> We will not discriminate against you for exercising your privacy rights</li>
+                </ul>
+                <p>To exercise these rights, use the methods described above or email us at <a href="mailto:scrollsensemarketing@gmail.com" class="email-link">scrollsensemarketing@gmail.com</a>.</p>
+            </div>
+            
+            <div class="section">
+                <h2>9. European Privacy Rights (GDPR)</h2>
+                <p>If you are in the European Economic Area, you have additional rights:</p>
+                <ul>
+                    <li><strong>Right of Access:</strong> Request a copy of your personal data</li>
+                    <li><strong>Right to Rectification:</strong> Request correction of inaccurate data</li>
+                    <li><strong>Right to Erasure:</strong> Request deletion of your data</li>
+                    <li><strong>Right to Restrict Processing:</strong> Request limitation of data processing</li>
+                    <li><strong>Right to Data Portability:</strong> Request your data in a portable format</li>
+                    <li><strong>Right to Object:</strong> Object to processing of your data</li>
+                </ul>
+                <p>To exercise these rights, use the methods described above or email us at <a href="mailto:scrollsensemarketing@gmail.com" class="email-link">scrollsensemarketing@gmail.com</a>.</p>
+            </div>
+            
+            <div class="section">
+                <h2>10. Questions About Your Privacy?</h2>
+                <p>If you have any questions about your privacy rights or how we handle your data, please contact us:</p>
+                
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:scrollsensemarketing@gmail.com?subject=Privacy Question" class="email-link">scrollsensemarketing@gmail.com</a></p>
+                    <p><strong>Subject Line:</strong> Privacy Question</p>
+                    <p>We will respond within 48 hours.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Scroll Sense. All rights reserved.</p>
+            <p style="margin-top: 10px;">
+                <a href="index.html">Support</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
