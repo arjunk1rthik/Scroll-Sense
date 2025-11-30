@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Sense - Your Digital Wellness Companion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .hero .tagline {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Purpose Section */
+        .purpose-section {
+            background: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .purpose-section h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+        
+        .purpose-section p {
+            font-size: 1.2em;
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto 20px;
+        }
+        
+        /* Features Section */
+        .features-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+        }
+        
+        .features-section h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        /* Highlight Section */
+        .highlight-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .highlight-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .highlight-item {
+            padding: 20px;
+        }
+        
+        .highlight-item h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .purpose-section h2,
+            .features-section h2,
+            .highlight-section h2,
+            .cta-section h2 {
+                font-size: 2em;
+            }
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+            margin: 60px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>📱 Scroll Sense</h1>
+            <p class="subtitle">Your Digital Wellness Companion</p>
+            <p class="tagline">Transform your relationship with social media. One mindful moment at a time.</p>
+            <a href="#features" class="cta-button">Explore Features</a>
+            <a href="https://apps.apple.com/app/scroll-sense" class="cta-button" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white;">Download Now</a>
+        </div>
+    </section>
+    
+    <!-- Purpose Section -->
+    <section class="purpose-section">
+        <div class="container">
+            <h2>Our Purpose & Mission</h2>
+            <p>
+                Scroll Sense is designed to help you develop a healthier, more mindful relationship with social media. 
+                In a world where digital platforms are woven into daily life, we don't ask you to disconnect—we help 
+                you connect more intentionally.
+            </p>
+            <p>
+                Our goal is to empower you with insights, tools, and support to understand how social media affects 
+                your mental well-being, build healthier digital habits, and create a more balanced relationship with 
+                technology. Whether you're tracking your mood, analyzing content impact, or building better habits, 
+                Scroll Sense provides the tools you need to make informed decisions about your digital consumption.
+            </p>
+            <p>
+                <strong>Your mental health matters, and every small moment of awareness counts.</strong>
+            </p>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2>Complete Feature Overview</h2>
+            
+            <div class="features-grid">
+                <!-- Feature 1: Dashboard -->
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Dashboard</h3>
+                    <p>
+                        View your social media usage and mood trends at a glance with comprehensive data visualizations.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Interactive mood vs. time spent charts</li>
+                        <li>Category breakdowns with stacked bar charts</li>
+                        <li>Mood trend line graphs over time</li>
+                        <li>Weekly and monthly averages</li>
+                        <li>Visual correlations between usage and mood</li>
+                        <li>Progress tracking across all metrics</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2: Report -->
+                <div class="feature-card">
+                    <span class="feature-icon">📄</span>
+                    <h3>AI-Powered Content Analysis</h3>
+                    <p>
+                        Analyze any social media content using advanced AI to understand its emotional impact and get 
+                        personalized recommendations.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Paste text or upload screenshots</li>
+                        <li>AI-powered emotional impact analysis</li>
+                        <li>Anxiety, depression, and well-being scores</li>
+                        <li>Content categorization and theme detection</li>
+                        <li>Personalized consumption recommendations</li>
+                        <li>Visual charts breaking down insights</li>
+                        <li>Instant feedback on content impact</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3: Mindful -->
+                <div class="feature-card">
+                    <span class="feature-icon">🧘</span>
+                    <h3>Mindfulness Tools</h3>
+                    <p>
+                        Take a moment to breathe and stay present with customizable mindfulness reminders and guided 
+                        breathing exercises.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Guided breathing exercises</li>
+                        <li>Customizable reminder intervals</li>
+                        <li>Thoughtful wellness prompts</li>
+                        <li>Personal reminder customization</li>
+                        <li>Full-screen mindfulness overlays</li>
+                        <li>Countdown timers for next reminder</li>
+                        <li>Wellness tips and affirmations</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 4: Journal -->
+                <div class="feature-card">
+                    <span class="feature-icon">📔</span>
+                    <h3>Reflection Journal</h3>
+                    <p>
+                        Build self-awareness through daily reflection. Track your mood patterns, identify triggers, 
+                        and maintain consistency with streak tracking.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Daily mood tracking with 5-point scale</li>
+                        <li>Private journal entries</li>
+                        <li>Mood pattern identification</li>
+                        <li>Reflection streak tracking</li>
+                        <li>Content impact analysis</li>
+                        <li>Tag-based organization</li>
+                        <li>Historical trend visualization</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 5: Rewards -->
+                <div class="feature-card">
+                    <span class="feature-icon">🏆</span>
+                    <h3>Rewards & Achievements</h3>
+                    <p>
+                        Stay motivated with positive reinforcement. Earn points, unlock badges, and celebrate your 
+                        progress toward healthier habits.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Points for healthy habits</li>
+                        <li>Achievement badges and milestones</li>
+                        <li>Streak tracking and rewards</li>
+                        <li>Daily and weekly challenges</li>
+                        <li>Progress celebration</li>
+                        <li>Motivational feedback</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 6: Sleep -->
+                <div class="feature-card">
+                    <span class="feature-icon">😴</span>
+                    <h3>Sleep Health</h3>
+                    <p>
+                        Improve your sleep by tracking how social media affects your rest. Set evening reminders 
+                        and discover correlations between digital habits and sleep quality.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Evening reminder notifications</li>
+                        <li>Bedtime usage tracking</li>
+                        <li>Sleep quality correlation analysis</li>
+                        <li>Customizable bedtime notifications</li>
+                        <li>Sleep hygiene recommendations</li>
+                        <li>Usage patterns before sleep</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 7: Goals -->
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Goals & Progress</h3>
+                    <p>
+                        Set personalized wellness goals and track your progress. Whether it's reducing time on certain 
+                        platforms or improving mood scores, see your growth with visual indicators.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Personalized goal creation</li>
+                        <li>Progress tracking with visual indicators</li>
+                        <li>Custom and predefined goals</li>
+                        <li>Milestone celebrations</li>
+                        <li>Goal adjustment and flexibility</li>
+                        <li>Weekly review and insights</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 8: Education -->
+                <div class="feature-card">
+                    <span class="feature-icon">📚</span>
+                    <h3>Education & Awareness</h3>
+                    <p>
+                        Learn about digital wellness and mental health. Access evidence-based strategies, understand 
+                        social media's impact, and discover ways to build healthier boundaries.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Digital wellness best practices</li>
+                        <li>Mental health education</li>
+                        <li>Social media impact insights</li>
+                        <li>Resilience building strategies</li>
+                        <li>Healthy boundary techniques</li>
+                        <li>Evidence-based resources</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 9: Daily Check-in -->
+                <div class="feature-card">
+                    <span class="feature-icon">✅</span>
+                    <h3>Daily Check-In</h3>
+                    <p>
+                        Log your daily social media usage across 9 meaningful content categories. Track time spent, 
+                        record your mood, and see how different types of content affect your well-being.
+                    </p>
+                    <ul class="feature-list">
+                        <li>9 content category tracking</li>
+                        <li>Time logging (hours & minutes)</li>
+                        <li>Mood recording with comparison</li>
+                        <li>Optional notes and reflections</li>
+                        <li>Category impact analysis</li>
+                        <li>Pattern recognition over time</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Additional Features -->
+            <div class="features-grid" style="margin-top: 40px;">
+                <!-- AI Assistant -->
+                <div class="feature-card" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto;">
+                    <span class="feature-icon">🤖</span>
+                    <h3>AI Wellness Assistant</h3>
+                    <p>
+                        Get instant, personalized guidance whenever you need it. Chat with our AI assistant about 
+                        digital wellness strategies, understanding your usage patterns, coping with social media stress, 
+                        and building healthier habits.
+                    </p>
+                    <ul class="feature-list">
+                        <li>24/7 available chat assistant</li>
+                        <li>Personalized wellness guidance</li>
+                        <li>Usage pattern explanations</li>
+                        <li>Stress coping strategies</li>
+                        <li>Habit-building support</li>
+                        <li>Educational conversations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <!-- Highlight Section -->
+    <section class="highlight-section">
+        <div class="container">
+            <h2>Why Choose Scroll Sense?</h2>
+            <div class="highlight-grid">
+                <div class="highlight-item">
+                    <h3>🔒 Privacy First</h3>
+                    <p>Your data is yours. Secure authentication, encrypted storage, and transparent privacy practices.</p>
+                </div>
+                <div class="highlight-item">
+                    <h3>📊 Data-Driven</h3>
+                    <p>Make informed decisions with comprehensive analytics and visual insights into your digital habits.</p>
+                </div>
+                <div class="highlight-item">
+                    <h3>🧠 Evidence-Based</h3>
+                    <p>Built on research-backed strategies for digital wellness and mental health support.</p>
+                </div>
+                <div class="highlight-item">
+                    <h3>✨ Beautiful Design</h3>
+                    <p>Intuitive, modern interface that makes tracking and reflection enjoyable and engaging.</p>
+                </div>
+                <div class="highlight-item">
+                    <h3>🎯 Personalized</h3>
+                    <p>Customizable goals, reminders, and recommendations tailored to your unique needs.</p>
+                </div>
+                <div class="highlight-item">
+                    <h3>💪 Empowering</h3>
+                    <p>Tools and insights that help you take control of your digital wellness journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start Your Digital Wellness Journey Today</h2>
+            <p>
+                Scroll Sense is designed for teens and young adults, but anyone seeking to improve their digital 
+                wellness is welcome. Take the first step toward a more mindful, balanced relationship with social media.
+            </p>
+            <a href="https://apps.apple.com/app/scroll-sense" class="cta-button" style="background: #667eea; color: white;">Download on App Store</a>
+            <a href="index.html" class="cta-button" style="background: #f8f9fa; color: #667eea; border: 2px solid #667eea;">Get Support</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="margin-bottom: 20px;">© 2024 Scroll Sense. All rights reserved.</p>
+            <p style="margin-bottom: 20px;">
+                <a href="index.html">Support & Help</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy-choices.html">Privacy Choices</a>
+            </p>
+            <p style="color: #95a5a6; font-size: 0.9em;">
+                <strong>Important:</strong> Scroll Sense is for educational and wellness purposes only. It is not a 
+                medical device and does not provide medical diagnosis or treatment. Always consult healthcare professionals 
+                for serious mental health concerns.
+            </p>
+            <p style="margin-top: 20px; color: #95a5a6; font-size: 0.9em;">
+                Questions? Contact us at <a href="mailto:support@scrollsenseapp.com">support@scrollsenseapp.com</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
+
