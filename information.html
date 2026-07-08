@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Feature Guide — Scroll Sense</title>
+<meta name="description" content="The complete map of every Scroll Sense feature: check-ins, goals, app blocking, mindfulness, sleep, Pomodoro, rewards, and more.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .info-layout { grid-template-columns: 272px 1fr; }
+  .doc-toc { max-height: calc(100vh - 120px); overflow-y: auto; padding-right: 6px; }
+  .doc-toc .toc-group { margin-bottom: 4px; }
+  .doc-toc .toc-group > a { font-weight: 600; color: var(--ink); }
+  .doc-toc ul ul { border-left: none; margin-left: 10px; }
+  .doc-toc ul ul a { font-size: 0.84em; color: var(--muted); padding: 5px 14px; }
+
+  .feature-block {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px 28px; margin-bottom: 22px; box-shadow: var(--shadow);
+    scroll-margin-top: 100px;
+  }
+  .feature-block h3 { margin-top: 0 !important; display: flex; align-items: center; gap: 10px; font-size: 1.18em; }
+  .why {
+    background: var(--surface); border-left: 4px solid var(--amber);
+    padding: 12px 16px; border-radius: 10px; margin-top: 14px; font-size: 0.94em; color: var(--ink-soft);
+  }
+  .why strong { color: var(--amber-deep); }
+
+  .howto-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; }
+  .howto-tab {
+    border: 1px solid var(--line); background: #fff; border-radius: 99px; padding: 8px 18px;
+    font-family: var(--font-display); font-weight: 600; font-size: 0.88em; cursor: pointer;
+    color: var(--ink-soft); transition: all .2s;
+  }
+  .howto-tab.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .howto-panel { display: none; }
+  .howto-panel.on { display: block; }
+
+  /* ---------- Chatbot ---------- */
+  .chat-fab {
+    position: fixed; right: 22px; bottom: 22px; z-index: 200;
+    background: linear-gradient(135deg, var(--indigo), var(--violet)); color: #fff;
+    border: none; border-radius: 99px; padding: 15px 24px; font-family: var(--font-display);
+    font-weight: 700; font-size: 0.95em; cursor: pointer; box-shadow: var(--shadow-lg);
+    display: flex; align-items: center; gap: 9px; transition: transform .2s;
+  }
+  .chat-fab:hover { transform: translateY(-3px); }
+  .chat-panel {
+    position: fixed; right: 22px; bottom: 90px; z-index: 200;
+    width: min(380px, calc(100vw - 44px)); height: min(540px, calc(100vh - 130px));
+    background: #fff; border: 1px solid var(--line); border-radius: 20px;
+    box-shadow: var(--shadow-lg); display: none; flex-direction: column; overflow: hidden;
+  }
+  .chat-panel.open { display: flex; }
+  .chat-head {
+    background: var(--night); color: #fff; padding: 16px 20px;
+    font-family: var(--font-display); font-weight: 700; display: flex; justify-content: space-between; align-items: center;
+  }
+  .chat-head small { display: block; font-weight: 400; font-size: 0.72em; color: rgba(255,255,255,0.65); }
+  .chat-close { background: none; border: none; color: #fff; font-size: 1.2em; cursor: pointer; }
+  .chat-log { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: var(--surface); }
+  .msg { max-width: 86%; padding: 11px 15px; border-radius: 16px; font-size: 0.9em; line-height: 1.6; }
+  .msg.bot { background: #fff; border: 1px solid var(--line); border-bottom-left-radius: 6px; align-self: flex-start; }
+  .msg.user { background: var(--indigo); color: #fff; border-bottom-right-radius: 6px; align-self: flex-end; }
+  .msg a { color: var(--violet); font-weight: 600; }
+  .chat-suggest { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 18px 10px; background: var(--surface); }
+  .chat-suggest button {
+    border: 1px solid var(--line); background: #fff; border-radius: 99px; padding: 5px 12px;
+    font-size: 0.76em; cursor: pointer; color: var(--ink-soft);
+  }
+  .chat-suggest button:hover { border-color: var(--indigo); color: var(--indigo); }
+  .chat-input { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--line); background: #fff; }
+  .chat-input input {
+    flex: 1; border: 1px solid var(--line); border-radius: 99px; padding: 11px 16px;
+    font-family: var(--font-body); font-size: 0.92em; outline: none;
+  }
+  .chat-input input:focus { border-color: var(--indigo); }
+  .chat-input button {
+    background: var(--ink); color: #fff; border: none; border-radius: 99px;
+    padding: 0 20px; font-weight: 700; cursor: pointer; font-family: var(--font-display);
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><span class="dot">📱</span>Scroll Sense</a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="information.html">Information</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="findings.html">Findings</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a class="nav-cta" href="https://apps.apple.com/us/app/scroll-sense/id6755644401">Download</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="container">
+    <p class="eyebrow" style="color: var(--amber);">Everything, mapped</p>
+    <h1>The Complete Scroll Sense Guide</h1>
+    <div class="rhythm"></div>
+    <p>Every feature area in the app — what it does, why it helps, and how to create, edit, delete, view, and share. Use the sidebar to jump anywhere, or ask the assistant in the corner.</p>
+  </div>
+</div>
+
+<div class="doc-layout info-layout">
+
+  <!-- ============ SIDEBAR ============ -->
+  <nav class="doc-toc" aria-label="Guide sections">
+    <div class="toc-title">On this page</div>
+    <ul>
+      <li class="toc-group"><a href="#what-is">1 · What Scroll Sense Is</a></li>
+      <li class="toc-group"><a href="#core-experience">2 · Core Experience</a>
+        <ul>
+          <li><a href="#home-hub">Home Hub</a></li>
+          <li><a href="#navigation">Bottom Navigation</a></li>
+          <li><a href="#guided-flows">Guided Flows</a></li>
+        </ul>
+      </li>
+      <li class="toc-group"><a href="#encyclopedia">3 · Feature Encyclopedia</a>
+        <ul>
+          <li><a href="#accounts">Account &amp; Security</a></li>
+          <li><a href="#checkin">Daily Check-In</a></li>
+          <li><a href="#planner">Time Planner</a></li>
+          <li><a href="#goals">Goals</a></li>
+          <li><a href="#goal-blocking">Per-Goal App Blocking</a></li>
+          <li><a href="#todo">To-Do List</a></li>
+          <li><a href="#plan-day">Plan Your Day</a></li>
+          <li><a href="#journal">Journal</a></li>
+          <li><a href="#mindful">Mindful</a></li>
+          <li><a href="#sleep">Sleep</a></li>
+          <li><a href="#blocking">App Blocking</a></li>
+          <li><a href="#pomodoro">Pomodoro</a></li>
+          <li><a href="#dashboard">Dashboard &amp; Insights</a></li>
+          <li><a href="#report">Report (AI Analysis)</a></li>
+          <li><a href="#assistant">AI Assistant</a></li>
+          <li><a href="#rewards">Rewards &amp; Gamification</a></li>
+          <li><a href="#chess">Chess &amp; Break Games</a></li>
+          <li><a href="#settings">Settings</a></li>
+          <li><a href="#notifications">Notifications</a></li>
+          <li><a href="#reliability">Data &amp; Reliability</a></li>
+        </ul>
+      </li>
+      <li class="toc-group"><a href="#micro">4 · Micro Features</a></li>
+      <li class="toc-group"><a href="#faqs">5 · FAQs</a></li>
+      <li class="toc-group"><a href="#howto">6 · How-To Guide</a></li>
+      <li class="toc-group"><a href="#positioning">7 · In One Line</a></li>
+      <li class="toc-group"><a href="#accuracy">8 · Accuracy Notes</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============ BODY ============ -->
+  <main class="doc-body">
+
+    <h2 id="what-is">1 · What Scroll Sense Is</h2>
+    <p>Scroll Sense is a digital wellness app that helps users reduce mindless scrolling and build healthier routines through:</p>
+    <ul>
+      <li>Morning planning</li>
+      <li>Evening reflection</li>
+      <li>App blocking and focus modes</li>
+      <li>Mood, sleep, and journal tracking</li>
+      <li>Gamification (XP, gems, streaks, badges, leagues)</li>
+      <li>AI-powered guidance and content analysis</li>
+    </ul>
+    <p>The app is designed to help users understand their social media habits and replace passive screen time with intentional actions.</p>
+
+    <h2 id="core-experience">2 · Core User Experience</h2>
+
+    <div class="feature-block" id="home-hub">
+      <h3>🏠 Home Hub</h3>
+      <p>Users land on a central home screen that includes:</p>
+      <ul>
+        <li>Personalized greeting</li>
+        <li>Streak and XP progress indicators</li>
+        <li>Quick access cards for Daily Check-In, Goals, Mindful, Sleep, Journal, Report, Rewards, Pomodoro, and App Blocking</li>
+        <li>"Plan Your Day" preview with completion toggles</li>
+        <li>"Quick Reflection" widget (morning intention / evening check-in prompt)</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users can see progress and jump straight to the next best habit in seconds.</div>
+    </div>
+
+    <div class="feature-block" id="navigation">
+      <h3>🧭 Bottom Navigation</h3>
+      <p>Fast tab-level navigation supports Dashboard, Report, Mindful, Journal, and More — plus direct pathways to Goals, Rewards, Sleep, Pomodoro, Plan Your Day, and App Blocking via cards and buttons.</p>
+      <div class="why"><strong>Why this helps:</strong> less friction, faster consistency.</div>
+    </div>
+
+    <div class="feature-block" id="guided-flows">
+      <h3>🗺️ Guided Flows</h3>
+      <p>The app includes onboarding tours and feature-level guided tours so users understand what to do first.</p>
+      <div class="why"><strong>Why this helps:</strong> first-time users are less overwhelmed and activate value faster.</div>
+    </div>
+
+    <h2 id="encyclopedia">3 · Full Feature Encyclopedia</h2>
+
+    <div class="feature-block" id="accounts">
+      <h3>🔐 Account, Login, and Security</h3>
+      <ul>
+        <li>Email sign-up with validation and password rules</li>
+        <li>Email login with password visibility toggle</li>
+        <li>Google sign-in</li>
+        <li>Apple sign-in</li>
+        <li>Email verification flow (code-based)</li>
+        <li>Password reset flow</li>
+        <li>Guest mode (limited / non-persistent)</li>
+        <li>Sign out</li>
+        <li>Account deletion</li>
+      </ul>
+      <div class="why"><strong>In short:</strong> users can start quickly, choose their preferred login method, and still keep strong account control.</div>
+    </div>
+
+    <div class="feature-block" id="checkin">
+      <h3>✅ Daily Check-In System</h3>
+      <p>Users can complete a structured daily check-in with:</p>
+      <ul>
+        <li>Social media usage logging across 6 categories</li>
+        <li>Mood logging and mood change review</li>
+        <li>Notes / reflection</li>
+        <li>Follow-through check on morning intention</li>
+        <li>Ability to create more than one check-in in a day</li>
+        <li>Check-in history and calendar-style review</li>
+      </ul>
+      <p><strong>Social categories include:</strong></p>
+      <ul>
+        <li>Appearance &amp; comparison</li>
+        <li>Connection</li>
+        <li>Entertainment &amp; trends</li>
+        <li>Negative / harmful</li>
+        <li>Learning</li>
+        <li>Gaming / interactive</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users don't just track time, they track how content made them feel.</div>
+    </div>
+
+    <div class="feature-block" id="planner">
+      <h3>🌅 Social Media Time Planner (Morning Planning)</h3>
+      <ul>
+        <li>Set category-specific social media targets</li>
+        <li>Use "At most" and "At least" style targets</li>
+        <li>Save a daily plan</li>
+        <li>View planner history</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users go into the day with intention instead of impulse.</div>
+    </div>
+
+    <div class="feature-block" id="goals">
+      <h3>🎯 Goals (Detailed)</h3>
+      <ul>
+        <li>Create custom goals</li>
+        <li>Goal types: normal, timing/time-window, and social-media style goals</li>
+        <li>Set duration, date windows, and completion targets</li>
+        <li>Edit goals</li>
+        <li>Delete goals</li>
+        <li>Mark goals complete</li>
+        <li>Rate completed goals (star / satisfaction style feedback)</li>
+        <li>Goal progress and completion stats</li>
+        <li>Suggested / predefined goal options</li>
+        <li>Custom goal categories / folders</li>
+        <li>Daily reset behavior for repeat goals</li>
+        <li>"No Phone After" time feature for evening boundaries</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users can design goals that match real life — short-term tasks, recurring habits, and time-bound behavior change.</div>
+    </div>
+
+    <div class="feature-block" id="goal-blocking">
+      <h3>🛡️ Per-Goal App Blocking</h3>
+      <p>For timing goals, users can:</p>
+      <ul>
+        <li>Enable blocking during goal windows</li>
+        <li>Pick specific apps / categories per goal</li>
+        <li>Keep different blocked-app lists for different goals</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> goals become enforceable, not just aspirational.</div>
+    </div>
+
+    <div class="feature-block" id="todo">
+      <h3>📝 To-Do List</h3>
+      <ul>
+        <li>Create tasks</li>
+        <li>Edit tasks</li>
+        <li>Delete tasks</li>
+        <li>Set priority</li>
+        <li>Set due dates</li>
+        <li>Set reminders</li>
+        <li>Use timer-based support</li>
+        <li>Mark complete</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> task execution stays connected to wellness and focus, not separated in another app.</div>
+    </div>
+
+    <div class="feature-block" id="plan-day">
+      <h3>🗓️ Plan Your Day</h3>
+      <ul>
+        <li>Add scheduled day-plan items</li>
+        <li>Edit items</li>
+        <li>Delete items</li>
+        <li>Mark items complete</li>
+        <li>Set time blocks and priorities</li>
+        <li>Add quick 10-minute break blocks</li>
+        <li>Save day-plan templates / entries</li>
+        <li>Rename saved plan entries</li>
+        <li>Search saved entries</li>
+        <li>Share saved plans via system share sheet (great for parents, friends, accountability partners, mentors)</li>
+        <li>Delay an active schedule when life shifts</li>
+        <li>Receive start/end and completion reminders</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> this turns intention into a practical timeline users can actually follow.</div>
+    </div>
+
+    <div class="feature-block" id="journal">
+      <h3>📔 Journal</h3>
+      <ul>
+        <li>Create journal entries</li>
+        <li>Edit entries</li>
+        <li>Delete entries</li>
+        <li>Add title + long-form text</li>
+        <li>Tag entries</li>
+        <li>Mark private entries</li>
+        <li>Record mood score</li>
+        <li>Track journal streak and average mood trends</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users can process emotions and spot behavior patterns over time.</div>
+    </div>
+
+    <div class="feature-block" id="mindful">
+      <h3>🧘 Mindful (Mindfulness)</h3>
+      <ul>
+        <li>Turn mindfulness reminders on/off</li>
+        <li>Set reminder interval</li>
+        <li>Start mindfulness "now"</li>
+        <li>Pause / resume mindfulness sessions</li>
+        <li>Use customizable reminder messages</li>
+        <li>Add custom reminders</li>
+        <li>Enable / disable specific reminder messages</li>
+        <li>Launch breathing exercises (multiple lengths)</li>
+        <li>Optionally block distracting apps during mindful breathing</li>
+        <li>Receive auto mindful nudges based on usage thresholds</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> this interrupts autopilot scrolling and creates repeatable reset moments.</div>
+    </div>
+
+    <div class="feature-block" id="sleep">
+      <h3>😴 Sleep</h3>
+      <ul>
+        <li>Log bedtime and wake time</li>
+        <li>Add sleep quality</li>
+        <li>Note whether social media affected sleep</li>
+        <li>Add sleep notes</li>
+        <li>Edit sleep entries</li>
+        <li>Delete sleep entries</li>
+        <li>View sleep history and stats</li>
+        <li>Enable bedtime app blocking</li>
+        <li>Configure separate weekday / weekend bedtime behavior</li>
+        <li>Configure separate weekday / weekend wake behavior for sleep-blocking boundaries</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users can directly connect nighttime phone habits to sleep quality.</div>
+    </div>
+
+    <div class="feature-block" id="blocking">
+      <h3>🛡️ App Blocking (Focus Shields)</h3>
+      <p>Scroll Sense supports robust app blocking with:</p>
+      <ul>
+        <li>Master "Focus Shields" toggle</li>
+        <li>Screen Time / Family Controls permission flow</li>
+        <li>Default app blocking list</li>
+        <li>Pomodoro-specific blocking list</li>
+        <li>Goal-specific blocking list</li>
+        <li>Mindful-specific blocking list</li>
+        <li>Sleep weekday and sleep weekend blocking lists</li>
+        <li>Scheduled blocking windows with active weekdays</li>
+        <li>Start / end schedule notifications</li>
+        <li>App-blocking recompute triggers tied to key notifications</li>
+        <li>Dynamic reason tracking for why blocking is active</li>
+      </ul>
+      <p>When users tap a blocked app, the app can communicate restriction reasons such as Sleep, Goals, Pomodoro, Mindful, or the default schedule / focus shield context.</p>
+      <div class="why"><strong>Why this helps:</strong> users get both protection and clarity — what is blocked, and why.</div>
+    </div>
+
+    <div class="feature-block" id="pomodoro">
+      <h3>🍅 Pomodoro</h3>
+      <ul>
+        <li>Start / pause / reset focus sessions</li>
+        <li>Use work / break cycles</li>
+        <li>Use presets (like classic focus structures)</li>
+        <li>Customize visuals, themes, and animations</li>
+        <li>Use ambient sounds</li>
+        <li>Track Pomodoro history</li>
+        <li>Enable app blocking during focus</li>
+        <li>Use one-shot Pomodoro blocking for "just this session"</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users convert abstract productivity goals into repeatable focus intervals.</div>
+    </div>
+
+    <div class="feature-block" id="dashboard">
+      <h3>📊 Dashboard and Insights</h3>
+      <ul>
+        <li>Scroll Score (composite wellness score)</li>
+        <li>Multiple insight cards (mood, goals, habits, sleep impact, digital diet, and more)</li>
+        <li>Expand / collapse sections</li>
+        <li>User-controlled card visibility</li>
+        <li>Dashboard enable / disable setting</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users can see trend-level progress, not just daily snapshots.</div>
+    </div>
+
+    <div class="feature-block" id="report">
+      <h3>📄 Report (AI Analysis)</h3>
+      <ul>
+        <li>Paste social content text for analysis</li>
+        <li>Upload screenshots and extract / analyze text</li>
+        <li>Receive wellness-oriented interpretation and recommendations</li>
+        <li>See risk / impact oriented summaries</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users gain perspective on how specific content might affect mindset.</div>
+    </div>
+
+    <div class="feature-block" id="assistant">
+      <h3>🤖 AI Assistant (Scroll Sense Guide)</h3>
+      <ul>
+        <li>Ask predefined guidance prompts</li>
+        <li>Get practical tips on app use, FOMO, habits, and wellness</li>
+        <li>Search prompt-style help content quickly</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users get in-app coaching without leaving the app.</div>
+    </div>
+
+    <div class="feature-block" id="rewards">
+      <h3>🏆 Rewards and Gamification</h3>
+      <ul>
+        <li>XP for healthy actions</li>
+        <li>Gems currency</li>
+        <li>Levels</li>
+        <li>Daily and weekly challenges</li>
+        <li>Streaks (and streak risk warnings)</li>
+        <li>Streak freezes</li>
+        <li>Badges / achievements</li>
+        <li>Leagues</li>
+        <li>Leaderboard</li>
+        <li>Friend code sharing</li>
+        <li>Chest rewards</li>
+        <li>XP popups and celebration overlays</li>
+        <li>Reward shop with unlockables and utility items</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> behavior change stays motivating and fun instead of feeling like punishment.</div>
+    </div>
+
+    <div class="feature-block" id="chess">
+      <h3>♟️ Chess and Quick Break Games</h3>
+      <ul>
+        <li>Play chess vs AI with multiple difficulty levels</li>
+        <li>Play daily chess puzzles</li>
+        <li>Play with friends (local / online patterns present)</li>
+        <li>Track chess history / record</li>
+        <li>Earn reward progression tied to usage</li>
+        <li>Access quick break mini-games</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users replace doomscrolling breaks with intentional, brain-active breaks.</div>
+    </div>
+
+    <div class="feature-block" id="settings">
+      <h3>⚙️ Settings and Personalization</h3>
+      <ul>
+        <li>Change username</li>
+        <li>Set profile photo</li>
+        <li>Build / edit avatar (multi-part avatar customization)</li>
+        <li>Change app background / theme</li>
+        <li>Adjust font size</li>
+        <li>Use dark mode options</li>
+        <li>Configure dashboard card visibility</li>
+        <li>Configure reminder defaults and related behavior</li>
+        <li>Open privacy policy / terms / support links</li>
+        <li>Send support feedback</li>
+        <li>Access crisis resources quickly</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> users can make the app feel personal, readable, and emotionally safe.</div>
+    </div>
+
+    <div class="feature-block" id="notifications">
+      <h3>🔔 Notifications System</h3>
+      <p>The app can send reminders and alerts for:</p>
+      <ul>
+        <li>Daily check-in</li>
+        <li>Goals</li>
+        <li>Planner items</li>
+        <li>Sleep logging</li>
+        <li>Mindfulness</li>
+        <li>Pomodoro events</li>
+        <li>Streak risk</li>
+        <li>Plan completion</li>
+        <li>App blocking schedule boundaries</li>
+      </ul>
+      <p>Notification taps can deep-link into relevant screens.</p>
+      <div class="why"><strong>Why this helps:</strong> users are prompted exactly when action matters most.</div>
+    </div>
+
+    <div class="feature-block" id="reliability">
+      <h3>🔄 Data and Reliability Behavior</h3>
+      <p>Behind the scenes, Scroll Sense uses:</p>
+      <ul>
+        <li>Local persistence for reliability</li>
+        <li>Cloud sync for signed-in users</li>
+        <li>Guest-mode safeguards</li>
+        <li>Validation and migration logic</li>
+        <li>Focus-shield background sync + monitor scheduling</li>
+      </ul>
+      <div class="why"><strong>Why this helps:</strong> user progress is more likely to survive app restarts, backgrounding, and normal device interruptions.</div>
+    </div>
+
+    <h2 id="micro">4 · Small-but-Important Micro Features</h2>
+    <p>Easy to miss, worth knowing:</p>
+    <ul>
+      <li>Home "Quick Reflection" has time-aware behavior (morning vs evening)</li>
+      <li>Users can start additional daily check-ins after completing one</li>
+      <li>Plan Your Day supports delay shifts when schedule slips</li>
+      <li>Plan entries can be renamed and searched</li>
+      <li>Plan entries can be shared via iOS share sheet</li>
+      <li>Goal completion can include satisfaction-style feedback</li>
+      <li>Mindful reminders can be custom-written by the user</li>
+      <li>Streak-risk reminders can escalate across the day</li>
+      <li>Shop supports practical items (like streak-protection) not just cosmetics</li>
+      <li>Some advanced / education / subscription surfaces exist as staged or partially enabled experiences</li>
+    </ul>
+
+    <h2 id="faqs">5 · FAQs</h2>
+
+    <h3>Getting Started</h3>
+    <details class="faq-item"><summary>What is Scroll Sense?</summary><div class="faq-body">A digital wellness app that helps users reduce mindless social media use through planning, reflection, app blocking, focus tools, and rewards.</div></details>
+    <details class="faq-item"><summary>Do I need an account?</summary><div class="faq-body">You can try guest mode, but account mode gives stronger persistence and sync.</div></details>
+    <details class="faq-item"><summary>How does the daily flow work?</summary><div class="faq-body">Morning: Social Media Time Planner. Evening: Daily Check-In.</div></details>
+
+    <h3>Goals, Planner, and Tasks</h3>
+    <details class="faq-item"><summary>Can I create my own goals?</summary><div class="faq-body">Yes, including timing-based and social media goals.</div></details>
+    <details class="faq-item"><summary>Can I edit or delete goals later?</summary><div class="faq-body">Yes. Goals can be edited and removed.</div></details>
+    <details class="faq-item"><summary>Can I share my daily plan with parents?</summary><div class="faq-body">Yes. Saved plan entries can be shared using the share button / share sheet.</div></details>
+
+    <h3>App Blocking</h3>
+    <details class="faq-item"><summary>Can I block different apps for different contexts?</summary><div class="faq-body">Yes. Separate selections exist for default, Pomodoro, goals, mindful, and sleep contexts.</div></details>
+    <details class="faq-item"><summary>Why is an app blocked right now?</summary><div class="faq-body">Blocking can be triggered by active contexts such as sleep, goals, Pomodoro, mindful sessions, or the default schedule.</div></details>
+    <details class="faq-item"><summary>What if app blocking seems off?</summary><div class="faq-body">Screen Time / Family Controls permissions and active schedules / selections must be set.</div></details>
+
+    <h3>Mindfulness and Sleep</h3>
+    <details class="faq-item"><summary>What is auto mindful nudge?</summary><div class="faq-body">A reminder that can trigger when usage thresholds are crossed.</div></details>
+    <details class="faq-item"><summary>Can I block apps after bedtime?</summary><div class="faq-body">Yes, with configurable sleep boundaries.</div></details>
+
+    <h3>Data and Privacy</h3>
+    <details class="faq-item"><summary>Do users keep data in guest mode?</summary><div class="faq-body">Guest mode is intentionally limited compared to signed-in persistence.</div></details>
+    <details class="faq-item"><summary>Can users delete accounts?</summary><div class="faq-body">Yes, account deletion is supported.</div></details>
+
+    <h3>Rewards</h3>
+    <details class="faq-item"><summary>How do users earn XP and gems?</summary><div class="faq-body">By completing healthy actions across focus, reflection, planning, and consistency features.</div></details>
+    <details class="faq-item"><summary>Can users compete with others?</summary><div class="faq-body">Yes, leaderboard and league mechanics are present.</div></details>
+
+    <h2 id="howto">6 · How-To Guide</h2>
+    <p>Everything you can create, edit, delete, view, and share — by action.</p>
+
+    <div class="howto-tabs" role="tablist">
+      <button class="howto-tab on" data-panel="p-create">Create</button>
+      <button class="howto-tab" data-panel="p-edit">Edit</button>
+      <button class="howto-tab" data-panel="p-delete">Delete</button>
+      <button class="howto-tab" data-panel="p-view">View</button>
+      <button class="howto-tab" data-panel="p-share">Share</button>
+    </div>
+
+    <div class="howto-panel on" id="p-create">
+      <ul>
+        <li><strong>Create a goal:</strong> open Goals → add goal → choose type / options → save.</li>
+        <li><strong>Create a to-do:</strong> open To-Do section → add task details → set reminder / priority → save.</li>
+        <li><strong>Create a day-plan entry:</strong> open Plan Your Day → add time blocks → save entry.</li>
+        <li><strong>Create a journal entry:</strong> open Journal → add title / content / mood / tags → save.</li>
+        <li><strong>Create a sleep log:</strong> open Sleep → fill bedtime / wake / quality / notes → save.</li>
+        <li><strong>Create social media planner targets:</strong> open Social Media Time Planner → set category targets → save.</li>
+      </ul>
+    </div>
+    <div class="howto-panel" id="p-edit">
+      <ul>
+        <li><strong>Edit goals:</strong> open goal details → modify time / type / target / blocking options → save.</li>
+        <li><strong>Edit to-dos:</strong> open task → change due date / priority / reminder / text → save.</li>
+        <li><strong>Edit day-plan entries:</strong> open saved entry → modify blocks / times → save.</li>
+        <li><strong>Edit journal entries:</strong> open entry → update content / mood / tags / privacy → save.</li>
+        <li><strong>Edit sleep logs:</strong> open entry from history → adjust data → save.</li>
+        <li><strong>Edit profile / avatar / theme:</strong> open Settings → update profile / photo / avatar / background / font / theme options.</li>
+      </ul>
+    </div>
+    <div class="howto-panel" id="p-delete">
+      <ul>
+        <li><strong>Delete goal:</strong> open goal actions / menu → delete.</li>
+        <li><strong>Delete to-do:</strong> swipe or open task action menu → delete.</li>
+        <li><strong>Delete day-plan item / entry:</strong> open plan item / entry actions → delete.</li>
+        <li><strong>Delete journal entry:</strong> open entry actions → delete.</li>
+        <li><strong>Delete sleep entry:</strong> open sleep history item actions → delete.</li>
+        <li><strong>Delete account:</strong> open Settings → account options → delete account (confirmation required).</li>
+      </ul>
+    </div>
+    <div class="howto-panel" id="p-view">
+      <ul>
+        <li><strong>View check-in history:</strong> Daily Check-In history / calendar view.</li>
+        <li><strong>View planner history:</strong> Social Media Time Planner history view.</li>
+        <li><strong>View focus trends:</strong> Dashboard insight cards + Scroll Score.</li>
+        <li><strong>View report analysis:</strong> Report screen result sections after text / screenshot analysis.</li>
+        <li><strong>View progress:</strong> Rewards tabs (Progress, Streaks, Badges, Challenges, League, Leaderboard).</li>
+        <li><strong>View Pomodoro history:</strong> Pomodoro history section.</li>
+        <li><strong>View sleep trends:</strong> Sleep history / stats.</li>
+      </ul>
+    </div>
+    <div class="howto-panel" id="p-share">
+      <ul>
+        <li><strong>Share Plan Your Day entry:</strong> open saved plan entry → tap share button.</li>
+        <li><strong>Share friend / competition identity:</strong> use leaderboard friend code flow.</li>
+        <li><strong>Share support feedback:</strong> via support / email pathways in Settings.</li>
+      </ul>
+    </div>
+
+    <h2 id="positioning">7 · Scroll Sense in One Line</h2>
+    <ul>
+      <li>"Scroll Sense turns social media awareness into daily action."</li>
+      <li>"Plan in the morning, reflect at night, improve week by week."</li>
+      <li>"Focus shields block distractions when you need discipline most."</li>
+      <li>"AI insights, mood tracking, and sleep patterns in one wellness system."</li>
+      <li>"Gamified growth with XP, streaks, badges, leagues, and reward unlocks."</li>
+      <li>"Share your daily plan with parents or accountability partners for extra support."</li>
+    </ul>
+
+    <h2 id="accuracy">8 · Notes for Accuracy</h2>
+    <ul>
+      <li>Some internal / staged areas may be partially enabled depending on build flags and rollout state.</li>
+      <li>Subscription surfaces can exist before full payment activation.</li>
+      <li>Certain background behaviors (especially Screen Time–managed app blocking) depend on iOS permissions and system behavior.</li>
+    </ul>
+
+  </main>
+</div>
+
+<!-- ============ CHATBOT ============ -->
+<button class="chat-fab" id="chatFab" aria-expanded="false">🤖 Ask about Scroll Sense</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Scroll Sense guide assistant">
+  <div class="chat-head">
+    <div>Scroll Sense Guide<br><small>Answers from this feature guide</small></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+  </div>
+  <div class="chat-log" id="chatLog">
+    <div class="msg bot">Hi! Ask me anything about Scroll Sense — features, how-tos, blocking, goals, rewards, privacy, and more. I'll answer and link you to the right section of this guide.</div>
+  </div>
+  <div class="chat-suggest">
+    <button data-q="How does app blocking work?">App blocking</button>
+    <button data-q="How do I create a goal?">Create a goal</button>
+    <button data-q="How do I earn XP?">Earn XP</button>
+    <button data-q="Can I share my plan with parents?">Share plans</button>
+  </div>
+  <div class="chat-input">
+    <input id="chatInput" type="text" placeholder="Ask a question…" aria-label="Your question">
+    <button id="chatSend">Send</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="fine" style="border-top:none; padding-top:0;">
+      <p><strong style="color: rgba(255,255,255,0.85);">Important:</strong> Scroll Sense is for educational and wellness purposes only. It is not a medical device and does not provide medical diagnosis or treatment.</p>
+      <p>
+        <a href="index.html">Home</a> ·
+        <a href="support.html">Support</a> ·
+        <a href="privacy.html">Privacy Policy</a> ·
+        <a href="terms.html">Terms of Service</a> ·
+        <a href="privacy-choices.html">Privacy Choices</a>
+      </p>
+      <p>© 2024–2026 Scroll Sense. All rights reserved. · <a href="mailto:support@scrollsenseapp.com">support@scrollsenseapp.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+/* ---------- How-to tabs ---------- */
+document.querySelectorAll('.howto-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.howto-tab').forEach(t => t.classList.remove('on'));
+    document.querySelectorAll('.howto-panel').forEach(p => p.classList.remove('on'));
+    tab.classList.add('on');
+    document.getElementById(tab.dataset.panel).classList.add('on');
+  });
+});
+
+/* ---------- Guide assistant (client-side knowledge base) ----------
+   Runs entirely in the browser with no API key. Each entry has
+   keywords matched against the question; the best match wins.
+   To upgrade to a live AI later, replace answerQuestion() with a
+   fetch() to your own backend endpoint that calls an LLM API.      */
+const KB = [
+  { k: ['what is', 'about', 'scroll sense', 'purpose', 'app do'], a: 'Scroll Sense is a digital wellness app that helps you reduce mindless scrolling through morning planning, evening reflection, app blocking, mood/sleep/journal tracking, gamification, and AI-powered guidance.', link: '#what-is', t: 'What Scroll Sense Is' },
+  { k: ['block', 'blocking', 'focus shield', 'shields', 'restrict', 'screen time'], a: 'App Blocking (Focus Shields) lets you block apps with separate lists for default, Pomodoro, goals, mindful, and sleep contexts — plus scheduled windows with active weekdays. When you tap a blocked app, Scroll Sense tells you why it\'s blocked (sleep, goals, Pomodoro, mindful, or schedule). It requires Screen Time / Family Controls permission.', link: '#blocking', t: 'App Blocking' },
+  { k: ['goal', 'goals', 'target', 'no phone after'], a: 'Goals support custom, timing/time-window, and social-media goal types with durations, date windows, completion targets, editing, deleting, star-style ratings, folders, daily resets, and a "No Phone After" evening boundary. To create one: open Goals → add goal → choose type and options → save.', link: '#goals', t: 'Goals' },
+  { k: ['check-in', 'check in', 'checkin', 'daily check'], a: 'The Daily Check-In logs social media usage across 6 categories (appearance & comparison, connection, entertainment & trends, negative/harmful, learning, gaming/interactive), plus mood, notes, and a follow-through check on your morning intention. You can do more than one per day and review history in a calendar view.', link: '#checkin', t: 'Daily Check-In' },
+  { k: ['planner', 'morning', 'plan targets', 'time planner', 'at most', 'at least'], a: 'The Social Media Time Planner is your morning step: set category-specific targets using "At most" or "At least," save the plan, and review planner history. Do it each morning, then complete a Daily Check-In at night.', link: '#planner', t: 'Time Planner' },
+  { k: ['plan your day', 'schedule', 'day plan', 'time block', 'delay'], a: 'Plan Your Day lets you build a timeline with time blocks and priorities, quick 10-minute breaks, saved and renamable entries, search, delay shifts when life slips, reminders, and sharing via the iOS share sheet.', link: '#plan-day', t: 'Plan Your Day' },
+  { k: ['share', 'parent', 'parents', 'accountability'], a: 'Yes — saved Plan Your Day entries can be shared through the iOS share sheet, which is great for parents, friends, mentors, and accountability partners. You can also share your friend code from the leaderboard.', link: '#plan-day', t: 'Sharing' },
+  { k: ['journal', 'diary', 'entry', 'entries'], a: 'The Journal supports entries with a title, long-form text, tags, private marking, and a mood score — plus journal streaks and average mood trends. Create: Journal → add title/content/mood/tags → save. You can edit and delete entries too.', link: '#journal', t: 'Journal' },
+  { k: ['mindful', 'mindfulness', 'breathe', 'breathing', 'nudge'], a: 'Mindful offers reminders on a custom interval, start-now sessions, pause/resume, custom-written reminder messages, breathing exercises in multiple lengths, optional app blocking during breathing, and auto mindful nudges when usage thresholds are crossed.', link: '#mindful', t: 'Mindful' },
+  { k: ['sleep', 'bedtime', 'wake', 'night'], a: 'Sleep lets you log bedtime, wake time, quality, whether social media affected sleep, and notes — with history and stats. You can enable bedtime app blocking with separate weekday and weekend boundaries.', link: '#sleep', t: 'Sleep' },
+  { k: ['pomodoro', 'focus session', 'timer', 'work break'], a: 'Pomodoro supports start/pause/reset, work/break cycles, presets, custom visuals and ambient sounds, history tracking, app blocking during focus, and one-shot blocking for "just this session."', link: '#pomodoro', t: 'Pomodoro' },
+  { k: ['xp', 'gems', 'reward', 'rewards', 'badge', 'streak', 'league', 'leaderboard', 'challenge', 'shop'], a: 'You earn XP and gems by completing healthy actions across focus, reflection, planning, and consistency features. There are levels, daily/weekly challenges, streaks with risk warnings and freezes, badges, leagues, a leaderboard with friend codes, chest rewards, and a shop with unlockables and utility items like streak protection.', link: '#rewards', t: 'Rewards' },
+  { k: ['chess', 'game', 'games', 'puzzle', 'break'], a: 'Quick break games include chess vs AI at multiple difficulties, daily chess puzzles, play with friends, chess history/records, reward progression, and mini-games — intentional brain-active breaks instead of doomscrolling.', link: '#chess', t: 'Chess & Games' },
+  { k: ['dashboard', 'insight', 'scroll score', 'stats', 'trends'], a: 'The Dashboard shows your Scroll Score (a composite wellness score) plus insight cards for mood, goals, habits, sleep impact, and digital diet. You can expand/collapse sections, control card visibility, and enable/disable the dashboard.', link: '#dashboard', t: 'Dashboard' },
+  { k: ['report', 'analyze', 'analysis', 'screenshot', 'content'], a: 'Report lets you paste social content text or upload screenshots for AI analysis, returning wellness-oriented interpretation, recommendations, and risk/impact summaries.', link: '#report', t: 'Report' },
+  { k: ['assistant', 'ai chat', 'chatbot', 'coach', 'fomo'], a: 'The in-app AI Assistant (Scroll Sense Guide) offers predefined guidance prompts, practical tips on app use, FOMO, habits, and wellness, and quick searchable help content.', link: '#assistant', t: 'AI Assistant' },
+  { k: ['account', 'login', 'sign in', 'sign up', 'google', 'apple', 'password', 'guest', 'verification'], a: 'You can sign up with email (with validation and password rules), or use Google or Apple sign-in. There\'s code-based email verification, password reset, a limited guest mode, sign out, and account deletion.', link: '#accounts', t: 'Accounts' },
+  { k: ['delete account', 'delete my data', 'remove account'], a: 'Account deletion is supported: open Settings → account options → delete account (confirmation required). See the Privacy Choices page for email-based requests too.', link: '#accounts', t: 'Account Deletion' },
+  { k: ['todo', 'to-do', 'task', 'tasks'], a: 'The To-Do List supports creating, editing, and deleting tasks with priorities, due dates, reminders, timer-based support, and completion — keeping task execution connected to your wellness system.', link: '#todo', t: 'To-Do List' },
+  { k: ['settings', 'theme', 'avatar', 'dark mode', 'font', 'profile', 'username'], a: 'Settings covers username, profile photo, multi-part avatar customization, backgrounds/themes, font size, dark mode, dashboard card visibility, reminder defaults, legal/support links, feedback, and quick access to crisis resources.', link: '#settings', t: 'Settings' },
+  { k: ['notification', 'notifications', 'reminder', 'alerts'], a: 'Notifications cover daily check-ins, goals, planner items, sleep logging, mindfulness, Pomodoro events, streak risk, plan completion, and app-blocking schedule boundaries — and tapping one deep-links to the right screen.', link: '#notifications', t: 'Notifications' },
+  { k: ['data', 'sync', 'privacy', 'reliab', 'offline', 'backup'], a: 'Scroll Sense uses local persistence, cloud sync for signed-in users, guest-mode safeguards, validation/migration logic, and background sync for focus shields — so progress survives restarts and interruptions. For privacy details, see the Privacy Policy and Privacy Choices pages.', link: '#reliability', t: 'Data & Reliability' },
+  { k: ['how to', 'create', 'edit', 'delete', 'view', 'how do i'], a: 'The How-To Guide covers create / edit / delete / view / share steps for goals, to-dos, day plans, journal entries, sleep logs, and planner targets.', link: '#howto', t: 'How-To Guide' },
+  { k: ['support', 'help', 'contact', 'email', 'bug'], a: 'For help, email support@scrollsenseapp.com — we typically respond within 24–48 hours. There\'s also a Support page with FAQs and bug-report guidance.', link: 'support.html', t: 'Support' }
+];
+
+const fab = document.getElementById('chatFab');
+const panel = document.getElementById('chatPanel');
+const log = document.getElementById('chatLog');
+const input = document.getElementById('chatInput');
+
+fab.addEventListener('click', () => {
+  const open = panel.classList.toggle('open');
+  fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (open) input.focus();
+});
+document.getElementById('chatClose').addEventListener('click', () => panel.classList.remove('open'));
+
+function addMsg(text, who, link, linkTitle) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  div.textContent = text;
+  if (link) {
+    const a = document.createElement('a');
+    a.href = link;
+    a.textContent = ' → Jump to ' + linkTitle;
+    a.addEventListener('click', () => { if (link.startsWith('#')) panel.classList.remove('open'); });
+    div.appendChild(document.createElement('br'));
+    div.appendChild(a);
+  }
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+}
+
+function answerQuestion(q) {
+  const query = q.toLowerCase();
+  let best = null, bestScore = 0;
+  for (const entry of KB) {
+    let score = 0;
+    for (const kw of entry.k) {
+      if (query.includes(kw)) score += kw.length; // longer keyword = stronger match
+    }
+    if (score > bestScore) { bestScore = score; best = entry; }
+  }
+  if (best) {
+    addMsg(best.a, 'bot', best.link, best.t);
+  } else {
+    addMsg("I couldn't find that in the guide. Try asking about a specific feature (goals, blocking, sleep, rewards, journal…) or email support@scrollsenseapp.com and we'll help directly.", 'bot', '#encyclopedia', 'the Feature Encyclopedia');
+  }
+}
+
+function send() {
+  const q = input.value.trim();
+  if (!q) return;
+  addMsg(q, 'user');
+  input.value = '';
+  setTimeout(() => answerQuestion(q), 350);
+}
+document.getElementById('chatSend').addEventListener('click', send);
+input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+document.querySelectorAll('.chat-suggest button').forEach(b => {
+  b.addEventListener('click', () => { input.value = b.dataset.q; send(); });
+});
+</script>
+</body>
+</html>
