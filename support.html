@@ -1,251 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scroll Sense - Support</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 40px 30px;
-        }
-        
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .section h2 {
-            color: #667eea;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-        }
-        
-        .contact-box {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
-        .contact-box p {
-            margin-bottom: 10px;
-        }
-        
-        .email-link {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-        }
-        
-        .email-link:hover {
-            text-decoration: underline;
-        }
-        
-        .faq-item {
-            margin-bottom: 20px;
-        }
-        
-        .faq-question {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        
-        .faq-answer {
-            color: #666;
-            margin-left: 20px;
-        }
-        
-        .button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 10px;
-            transition: transform 0.2s;
-        }
-        
-        .button:hover {
-            transform: translateY(-2px);
-        }
-        
-        .footer {
-            background: #f8f9fa;
-            padding: 20px 30px;
-            text-align: center;
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        ul {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support - Scroll Sense</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #764ba2;
+  --success: #10b981;
+  --bg-light: #f8fafc;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-light: #e5e7eb;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  color: var(--text-dark);
+  background: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav {
+  background: white;
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a:hover, nav a.active {
+  color: var(--primary);
+}
+
+.hero {
+  padding: 80px 0 60px;
+  background: linear-gradient(135deg, white 0%, var(--bg-light) 100%);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+.content {
+  padding: 80px 0;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.support-card {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.support-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.1);
+  transform: translateY(-5px);
+}
+
+.support-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.support-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.support-card p {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.support-link {
+  display: inline-block;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.support-link:hover {
+  color: var(--primary-dark);
+}
+
+.contact-form {
+  background: var(--bg-light);
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto 80px;
+}
+
+.contact-form h2 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.faq-section {
+  background: var(--bg-light);
+  padding: 60px 0;
+  margin: 60px 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+}
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.quick-link {
+  background: white;
+  border: 1px solid var(--border-light);
+  padding: 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quick-link:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.resource-item {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 25px;
+  transition: all 0.2s;
+}
+
+.resource-item:hover {
+  border-color: var(--primary);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.resource-item h4 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.resource-item p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.status-badge {
+  display: inline-block;
+  background: var(--success);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+}
+
+footer {
+  background: var(--text-dark);
+  color: white;
+  padding: 60px 0 30px;
+  margin-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 30px;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📱 Scroll Sense</h1>
-            <p>Support & Help Center</p>
-        </div>
-        
-        <div class="content">
-            <div class="section">
-                <h2>Get Help</h2>
-                <p>We're here to help! If you have questions, need assistance, or want to report an issue, please reach out to us.</p>
-                
-                <div class="contact-box">
-                    <p><strong>📧 Email Support:</strong></p>
-                    <p>
-                        <a href="mailto:support@scrollsenseapp.com?subject=Scroll Sense Support Request" class="email-link">
-                            support@scrollsenseapp.com
-                        </a>
-                    </p>
-                    <p style="margin-top: 15px; color: #666; font-size: 0.9em;">
-                        We typically respond within 24-48 hours.
-                    </p>
-                </div>
-                
-                <a href="mailto:support@scrollsenseapp.com?subject=Scroll Sense Support Request" class="button">
-                    Send Us an Email
-                </a>
-            </div>
-            
-            <div class="section">
-                <h2>Frequently Asked Questions</h2>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Q: How do I reset my password?</div>
-                    <div class="faq-answer">
-                        A: If you've forgotten your password, please contact us at support@scrollsenseapp.com with your registered email address, and we'll help you reset it.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Q: How do I delete my account?</div>
-                    <div class="faq-answer">
-                        A: You can delete your account from the Settings screen in the app. Go to Settings → Account → Delete Account. This action cannot be undone.
-                    </div>
-                </div>
+<nav>
+  <div class="container">
+    <div class="logo">📱 Scroll Sense</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="findings.html">Research</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="support.html" class="active">Support</a></li>
+    </ul>
+  </div>
+</nav>
 
-                <div class="faq-item">
-                    <div class="faq-question">Q: When should I do a Daily Goals, and when should I do a Daily Check-in, and how often should I do each?</div>
-                    <div class="faq-answer">
-                        A: It is best to complete a Daily Goals in the morning once, and complete a Daily Check-In in the nighttime before bed once. You can see insights about
-                        your usage and if/how you met your goals in the Dashboard.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Q: Is my data private?</div>
-                    <div class="faq-answer">
-                        A: Yes! Your data is encrypted and stored securely. Journal entries are private by default. Please review our <a href="privacy.html" style="color: #667eea;">Privacy Policy</a> for more details.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Q: How does the AI content analysis work?</div>
-                    <div class="faq-answer">
-                        A: Scroll Sense uses third-party AI services (Anthropic Claude and OpenAI) to analyze social media content you provide. Your content is sent securely to these services for analysis. We never store the content you analyze - it's only used for the analysis and then discarded.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Q: Can I export my data?</div>
-                    <div class="faq-answer">
-                        A: Yes! You can export your data from the Settings screen. Go to Settings → Data & Privacy → Export Data.
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>Report an Issue</h2>
-                <p>Found a bug or experiencing a problem? Please email us with:</p>
-                <ul>
-                    <li>Description of the issue</li>
-                    <li>Steps to reproduce (if applicable)</li>
-                    <li>Your device model and iOS version</li>
-                    <li>Screenshots (if helpful)</li>
-                </ul>
-                <p style="margin-top: 15px;">
-                    <a href="mailto:support@scrollsenseapp.com?subject=Bug Report - Scroll Sense" class="email-link">
-                        Report a Bug →
-                    </a>
-                </p>
-            </div>
-            
-            <div class="section">
-                <h2>Feature Requests</h2>
-                <p>Have an idea for a new feature? We'd love to hear it! Send your suggestions to:</p>
-                <p>
-                    <a href="mailto:support@scrollsenseapp.com?subject=Feature Request - Scroll Sense" class="email-link">
-                        support@scrollsenseapp.com
-                    </a>
-                </p>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>© 2025 Scroll Sense. All rights reserved.</p>
-            <p style="margin-top: 10px;">
-                <a href="privacy.html" style="color: #667eea; text-decoration: none; margin: 0 10px;">Privacy Policy</a>
-                <a href="privacy-choices.html" style="color: #667eea; text-decoration: none; margin: 0 10px;">Privacy Choices</a>
-                <a href="terms.html" style="color: #667eea; text-decoration: none; margin: 0 10px;">Terms of Service</a>
-            </p>
-        </div>
+<section class="hero">
+  <div class="container">
+    <h1>We're Here to Help</h1>
+    <p>Get support, answers, and resources for your Scroll Sense journey</p>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container">
+    <!-- Quick Support Options -->
+    <div class="support-grid">
+      <div class="support-card">
+        <div class="support-icon">💬</div>
+        <h3>Chat with AI</h3>
+        <p>Get instant answers about Scroll Sense, features, and digital wellness from our AI assistant.</p>
+        <a href="chatbot.html" class="support-link">Open Chat →</a>
+      </div>
+
+      <div class="support-card">
+        <div class="support-icon">❓</div>
+        <h3>FAQ</h3>
+        <p>Browse commonly asked questions about features, troubleshooting, privacy, and more.</p>
+        <a href="faq.html" class="support-link">View FAQ →</a>
+      </div>
+
+      <div class="support-card">
+        <div class="support-icon">📚</div>
+        <h3>Complete Guide</h3>
+        <p>Comprehensive feature guide with how-to instructions and best practices for every tool.</p>
+        <a href="information.html" class="support-link">Read Guide →</a>
+      </div>
+
+      <div class="support-card">
+        <div class="support-icon">📖</div>
+        <h3>Knowledge Base</h3>
+        <p>In-app help documentation and guided tours for each feature.</p>
+        <a href="#" class="support-link">Coming Soon</a>
+      </div>
+
+      <div class="support-card">
+        <div class="support-icon">🐦</div>
+        <h3>Social Media</h3>
+        <p>Follow us for updates, tips, stories, and connect with the community.</p>
+        <a href="#" class="support-link">Follow Us</a>
+      </div>
+
+      <div class="support-card">
+        <div class="support-icon">📧</div>
+        <h3>Email Support</h3>
+        <p>Reach our team directly for technical issues or in-depth questions.</p>
+        <a href="mailto:support@scrollsenseapp.com" class="support-link">Email Us →</a>
+      </div>
     </div>
+
+    <!-- Contact Form -->
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <h2>Send us a Message</h2>
+      
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" required>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" style="width: 100%; padding: 12px; border: 1px solid var(--border-light); border-radius: 8px; font-family: inherit; font-size: 1rem;" required>
+          <option>-- Select Category --</option>
+          <option>Bug Report</option>
+          <option>Feature Request</option>
+          <option>Account Issue</option>
+          <option>Feedback</option>
+          <option>Privacy Concern</option>
+          <option>General Question</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+
+    <!-- Quick Links -->
+    <h2 class="section-title">Quick Resources</h2>
+    <div class="quick-links">
+      <a href="information.html" class="quick-link">📖 Feature Guide</a>
+      <a href="faq.html" class="quick-link">❓ FAQ</a>
+      <a href="findings.html" class="quick-link">📊 Research</a>
+      <a href="privacy.html" class="quick-link">🔒 Privacy Policy</a>
+      <a href="terms.html" class="quick-link">⚖️ Terms</a>
+      <a href="chatbot.html" class="quick-link">💬 AI Chat</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <h2 class="section-title">Help Resources</h2>
+
+    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--text-dark);">Common Issues & Solutions</h3>
+
+    <div class="resources-grid">
+      <div class="resource-item">
+        <h4>⏱️ App Blocking Not Working</h4>
+        <p>Check Screen Time permission, enable Focus Shields, and verify your blocking lists are configured correctly.</p>
+        <a href="faq.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">View Full Solution →</a>
+      </div>
+
+      <div class="resource-item">
+        <h4>🔑 Forgot Password</h4>
+        <p>Use the "Forgot Password" option on login screen to reset via email. Check spam folder if email doesn't arrive.</p>
+        <a href="faq.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">View Full Solution →</a>
+      </div>
+
+      <div class="resource-item">
+        <h4>☁️ Data Not Syncing</h4>
+        <p>Ensure same account on all devices, check internet connection, and try signing out and back in.</p>
+        <a href="faq.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">View Full Solution →</a>
+      </div>
+
+      <div class="resource-item">
+        <h4>💥 App Crashes</h4>
+        <p>Update iOS and Scroll Sense, clear cache, restart device. Email support if issue persists.</p>
+        <a href="faq.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">View Full Solution →</a>
+      </div>
+
+      <div class="resource-item">
+        <h4>🎯 Getting Started</h4>
+        <p>Follow our recommended daily routine: morning goals, evening check-in, and consistent reflection.</p>
+        <a href="information.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">View Guide →</a>
+      </div>
+
+      <div class="resource-item">
+        <h4>🎓 Feature Deep Dive</h4>
+        <p>Learn how to use every feature with step-by-step instructions and best practices.</p>
+        <a href="information.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">View Guide →</a>
+      </div>
+    </div>
+
+    <!-- Support Channels -->
+    <h3 style="font-size: 1.4rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-dark);">Support Channels</h3>
+
+    <div class="resources-grid">
+      <div class="resource-item">
+        <h4>📧 Email</h4>
+        <p><strong>support@scrollsenseapp.com</strong></p>
+        <p style="margin-top: 0.5rem;">Response time: 24-48 hours</p>
+      </div>
+
+      <div class="resource-item">
+        <h4>💬 In-App Chat</h4>
+        <p>Settings → Help → Contact Support</p>
+        <p style="margin-top: 0.5rem;">Fastest for app issues</p>
+      </div>
+
+      <div class="resource-item">
+        <h4>🤖 AI Assistant</h4>
+        <p>Available 24/7 for instant answers</p>
+        <p style="margin-top: 0.5rem;"><a href="chatbot.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Open Chat →</a></p>
+      </div>
+
+      <div class="resource-item">
+        <h4>❤️ Mental Health</h4>
+        <p>Crisis resources in app Settings</p>
+        <p style="margin-top: 0.5rem;">988 Suicide & Crisis Lifeline</p>
+      </div>
+    </div>
+
+    <!-- Support Status -->
+    <div style="background: white; border: 1px solid var(--border-light); border-radius: 8px; padding: 25px; margin-top: 30px; text-align: center;">
+      <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">Support Status <span class="status-badge">All Systems Operational</span></h4>
+      <p style="color: var(--text-light); margin: 0.5rem 0 0 0;">We're monitoring systems 24/7. No known issues at this time.</p>
+      <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem;">Last updated: Today at 12:00 AM UTC</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="information.html">How It Works</a></li>
+          <li><a href="findings.html">Research</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Scroll Sense. Support & resources.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(event) {
+  event.preventDefault();
+  alert('Thank you for your message! We\'ll get back to you within 24 hours at the email you provided.');
+  event.target.reset();
+}
+</script>
 </body>
 </html>
-
