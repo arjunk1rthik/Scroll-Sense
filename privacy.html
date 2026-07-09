@@ -1,594 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Scroll Sense</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 40px 30px;
-        }
-        
-        .last-updated {
-            text-align: center;
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .section h2 {
-            color: #667eea;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            margin-top: 30px;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-        }
-        
-        .section h3 {
-            color: #764ba2;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-        
-        p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        ul, ol {
-            margin-left: 30px;
-            margin-bottom: 15px;
-        }
-        
-        li {
-            margin-bottom: 10px;
-        }
-        
-        .highlight-box {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
-        .highlight-box strong {
-            color: #667eea;
-        }
-        
-        .contact-info {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        .contact-info p {
-            margin-bottom: 8px;
-        }
-        
-        .email-link {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .email-link:hover {
-            text-decoration: underline;
-        }
-        
-        .footer {
-            background: #f8f9fa;
-            padding: 20px 30px;
-            text-align: center;
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        table th, table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        table th {
-            background: #f8f9fa;
-            color: #667eea;
-            font-weight: 600;
-        }
-        
-        strong {
-            color: #333;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy - Scroll Sense</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #764ba2;
+  --bg-light: #f8fafc;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-light: #e5e7eb;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  color: var(--text-dark);
+  background: white;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav {
+  background: white;
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+.header {
+  padding: 60px 0;
+  background: linear-gradient(135deg, white 0%, var(--bg-light) 100%);
+  text-align: center;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.content {
+  padding: 60px 0;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary);
+  display: inline-block;
+}
+
+.section h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.section p {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.section ul {
+  margin-left: 20px;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.section li {
+  margin-bottom: 0.5rem;
+  line-height: 1.8;
+}
+
+.highlight {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-left: 4px solid var(--primary);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.highlight strong {
+  color: var(--primary);
+}
+
+.toc {
+  background: var(--bg-light);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 3rem;
+}
+
+.toc h3 {
+  margin-top: 0;
+}
+
+.toc ul {
+  margin-left: 20px;
+  list-style: disc;
+}
+
+.toc a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background: var(--text-dark);
+  color: white;
+  padding: 40px 0 20px;
+  margin-top: 60px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .section h2 {
+    font-size: 1.3rem;
+  }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🔒 Privacy Policy</h1>
-            <p>Scroll Sense</p>
-        </div>
-        
-        <div class="content">
-            <div class="last-updated">
-                <strong>Last Updated:</strong> November 2024
-            </div>
-            
-            <div class="section">
-                <h2>1. Introduction</h2>
-                <p>
-                    Welcome to Scroll Sense ("we," "our," or "us"). We are committed to protecting your privacy and ensuring transparency about how we collect, use, and protect your personal information. This Privacy Policy explains our practices regarding data collection, use, and disclosure when you use our mobile application ("App").
-                </p>
-                <p>
-                    By using Scroll Sense, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our App.
-                </p>
-            </div>
-            
-            <div class="section">
-                <h2>2. Information We Collect</h2>
-                
-                <h3>2.1 Account Information</h3>
-                <p>When you create an account, we collect:</p>
-                <ul>
-                    <li><strong>Email Address:</strong> Used for account creation, authentication, and communication</li>
-                    <li><strong>Password:</strong> Stored securely using Firebase Authentication (encrypted, not accessible to us)</li>
-                    <li><strong>Account Creation Date:</strong> Timestamp of when you created your account</li>
-                    <li><strong>Last Login Date:</strong> Timestamp of your most recent login</li>
-                </ul>
-                
-                <h3>2.2 Usage and Activity Data</h3>
-                <p>We collect data about how you use Scroll Sense:</p>
-                <ul>
-                    <li><strong>Social Media Usage Data:</strong> Time spent on social media across 9 content categories (Beauty & Body Image, Connecting with Friends, Entertainment, Trends & Challenges, Mean Content, Educational Content, Celebrity Content, Gaming, Posting Own Content)</li>
-                    <li><strong>Daily Check-in Data:</strong> Your daily social media usage patterns, mood ratings, and optional notes</li>
-                    <li><strong>Mood Tracking Data:</strong> Mood ratings (1-5 scale), mood comparisons, and mood-related notes</li>
-                    <li><strong>Journal Entries:</strong> Written reflections, mood ratings, tags, and privacy settings for each entry</li>
-                    <li><strong>Goal Data:</strong> Wellness goals you set, progress tracking, and completion status</li>
-                    <li><strong>Sleep Health Data:</strong> Social media usage before bedtime and sleep quality correlations</li>
-                </ul>
-                
-                <h3>2.3 Content Analysis Data</h3>
-                <p>When you use our AI-powered content analysis feature:</p>
-                <ul>
-                    <li><strong>Social Media Content:</strong> Text or screenshots you submit for analysis</li>
-                    <li><strong>Analysis Results:</strong> Emotional impact scores, content categorization, and recommendations</li>
-                    <li><strong>Note:</strong> Content you analyze is sent to third-party AI services (Anthropic Claude and OpenAI) for processing. We do not store the content you analyze - it is only used for the analysis and then discarded.</li>
-                </ul>
-                
-                <h3>2.4 App Usage Data</h3>
-                <p>We collect information about your interaction with the App:</p>
-                <ul>
-                    <li><strong>Feature Usage:</strong> Which features you use and how often</li>
-                    <li><strong>App Performance Data:</strong> Crash reports, error logs, and performance metrics (collected automatically)</li>
-                    <li><strong>Device Information:</strong> Device type, iOS version, and app version (for troubleshooting)</li>
-                </ul>
-                
-                <h3>2.5 Optional Data</h3>
-                <p>You may optionally provide:</p>
-                <ul>
-                    <li><strong>Display Name:</strong> A name you choose to display in your profile</li>
-                    <li><strong>Profile Photo:</strong> If you choose to upload one</li>
-                    <li><strong>Custom Mindfulness Messages:</strong> Personal reminders you create</li>
-                </ul>
-            </div>
+<nav>
+  <div class="container">
+    <div class="logo">📱 Scroll Sense</div>
+    <a href="index.html">← Back</a>
+  </div>
+</nav>
 
-            <!-- ADDED SECTION: 2.6 User-Provided Content Clarification -->
-            <div class="section">
-                <h2>2.6 User-Provided Content Clarification</h2>
-                <p>
-                    Scroll Sense allows users to voluntarily provide content, such as pasted social media text or screenshots,
-                    for <strong>private analysis and personal reflection</strong>.
-                </p>
-                <p>
-                    This content is:
-                </p>
-                <ul>
-                    <li>Provided solely by the user</li>
-                    <li>Processed privately for the individual user</li>
-                    <li>Not published, shared, or made visible to other users</li>
-                    <li>Not considered public user-generated content</li>
-                </ul>
-                <p>
-                    Scroll Sense does not operate social feeds, messaging systems, or public content sharing.
-                    As a result, content moderation, reporting, or user-blocking features are not applicable.
-                </p>
-            </div>
-            
-            <div class="section">
-                <h2>3. How We Use Your Information</h2>
-                
-                <p>We use the information we collect for the following purposes:</p>
-                
-                <h3>3.1 App Functionality</h3>
-                <ul>
-                    <li>To create and manage your account</li>
-                    <li>To authenticate and verify your identity</li>
-                    <li>To provide core features: mood tracking, journaling, content analysis, goal setting</li>
-                    <li>To generate insights, charts, and visualizations based on your data</li>
-                    <li>To send verification codes and account-related emails</li>
-                </ul>
-                
-                <h3>3.2 Content Analysis</h3>
-                <ul>
-                    <li>To analyze social media content you submit using AI services</li>
-                    <li>To provide emotional impact scores and recommendations</li>
-                    <li>To help you understand how content affects your mental well-being</li>
-                </ul>
-                
-                <h3>3.3 App Improvement</h3>
-                <ul>
-                    <li>To understand how users interact with the App</li>
-                    <li>To identify and fix bugs or technical issues</li>
-                    <li>To improve App performance and user experience</li>
-                    <li>To develop new features based on usage patterns</li>
-                </ul>
-                
-                <h3>3.4 Communication</h3>
-                <ul>
-                    <li>To send you verification codes for account security</li>
-                    <li>To respond to your support requests</li>
-                    <li>To send important updates about the App (if you opt in)</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2>4. Third-Party Services</h2>
-                
-                <p>Scroll Sense uses the following third-party services to provide functionality:</p>
-                
-                <h3>4.1 Firebase (Google)</h3>
-                <ul>
-                    <li><strong>Purpose:</strong> Authentication, cloud database, and app analytics</li>
-                    <li><strong>Data Stored:</strong> User accounts, authentication tokens, app usage data, journal entries, check-in data</li>
-                    <li><strong>Privacy Policy:</strong> <a href="https://firebase.google.com/support/privacy" target="_blank" class="email-link">Firebase Privacy Policy</a></li>
-                    <li><strong>Location:</strong> Data is stored on Google Cloud servers (location may vary)</li>
-                </ul>
-                
-                <h3>4.2 SendGrid (Twilio)</h3>
-                <ul>
-                    <li><strong>Purpose:</strong> Sending verification code emails and account-related emails</li>
-                    <li><strong>Data Shared:</strong> Your email address and email content (verification codes, account notifications)</li>
-                    <li><strong>Privacy Policy:</strong> <a href="https://www.twilio.com/legal/privacy" target="_blank" class="email-link">SendGrid Privacy Policy</a></li>
-                </ul>
-                
-                <h3>4.3 Anthropic Claude API</h3>
-                <ul>
-                    <li><strong>Purpose:</strong> AI-powered content analysis and wellness assistant</li>
-                    <li><strong>Data Shared:</strong> Social media content you submit for analysis (text or extracted text from screenshots)</li>
-                    <li><strong>Important:</strong> Content is sent to Anthropic for analysis but is NOT stored by Anthropic or us after analysis completes</li>
-                    <li><strong>Privacy Policy:</strong> <a href="https://www.anthropic.com/privacy" target="_blank" class="email-link">Anthropic Privacy Policy</a></li>
-                </ul>
-                
-                <h3>4.4 OpenAI API</h3>
-                <ul>
-                    <li><strong>Purpose:</strong> AI-powered content analysis (alternative to Anthropic)</li>
-                    <li><strong>Data Shared:</strong> Social media content you submit for analysis</li>
-                    <li><strong>Important:</strong> Content is sent to OpenAI for analysis but is NOT stored by OpenAI or us after analysis completes</li>
-                    <li><strong>Privacy Policy:</strong> <a href="https://openai.com/privacy" target="_blank" class="email-link">OpenAI Privacy Policy</a></li>
-                </ul>
-                
-                <div class="highlight-box">
-                    <strong>⚠️ Important:</strong> When you use our content analysis feature, the content you submit (text or screenshots) is sent to third-party AI services (Anthropic Claude and/or OpenAI) for processing. This is necessary to provide the analysis feature. We do not store this content, and it is discarded after analysis. By using the content analysis feature, you consent to this data sharing.
-                </div>
-            </div>
+<section class="header">
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: January 2025 | Your privacy is our priority</p>
+  </div>
+</section>
 
-            <!-- ADDED SECTION: 4.5 AI Service Disclosure -->
-            <div class="section">
-                <h2>4.5 AI Service Disclosure</h2>
-                <p>
-                    Scroll Sense uses third-party artificial intelligence (AI) services to provide certain features within the App.
-                    These services include <strong>OpenAI</strong> and <strong>Anthropic</strong>.
-                </p>
-                <p>
-                    When you choose to use AI-powered features (such as content analysis or the AI assistant), the content you voluntarily
-                    submit is transmitted securely to these AI service providers solely for the purpose of generating informational
-                    responses and insights.
-                </p>
-                <ul>
-                    <li>AI services are used only to process user-requested features.</li>
-                    <li>User-submitted content is not used for advertising.</li>
-                    <li>User-submitted content is not sold.</li>
-                    <li>Scroll Sense does not retain raw AI input content after processing.</li>
-                    <li>AI providers do not store user content beyond what is required to generate a response.</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2>5. Data Storage and Security</h2>
-                
-                <h3>5.1 Data Storage</h3>
-                <ul>
-                    <li><strong>Cloud Storage:</strong> Your data is stored securely on Firebase/Firestore servers (Google Cloud infrastructure)</li>
-                    <li><strong>Local Storage:</strong> Some app settings and preferences are stored locally on your device</li>
-                    <li><strong>Encryption:</strong> Data transmitted between your device and our servers is encrypted using HTTPS/TLS</li>
-                    <li><strong>Authentication:</strong> Passwords are hashed and encrypted by Firebase Authentication - we cannot see your password</li>
-                </ul>
-                
-                <h3>5.2 Security Measures</h3>
-                <ul>
-                    <li>Firebase security rules restrict access to your data - only you can access your own data</li>
-                    <li>Authentication tokens are securely managed</li>
-                    <li>Regular security updates and monitoring</li>
-                    <li>Secure API connections for all third-party services</li>
-                </ul>
-                
-                <h3>5.3 Data Retention</h3>
-                <ul>
-                    <li><strong>Account Data:</strong> Retained until you delete your account</li>
-                    <li><strong>Usage Data:</strong> Retained to provide historical insights and trends</li>
-                    <li><strong>Journal Entries:</strong> Retained until you delete them or delete your account</li>
-                    <li><strong>Content Analysis:</strong> Content you analyze is NOT stored - only analysis results are saved</li>
-                    <li><strong>Deleted Accounts:</strong> All data is permanently deleted within 30 days of account deletion</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2>6. Your Rights and Choices</h2>
-                
-                <h3>6.1 Access Your Data</h3>
-                <p>You can access your data at any time through the App:</p>
-                <ul>
-                    <li>View all your journal entries, check-ins, and mood data</li>
-                    <li>See your usage statistics and trends</li>
-                    <li>Export your data from Settings → Data & Privacy → Export Data</li>
-                </ul>
-                
-                <h3>6.2 Modify Your Data</h3>
-                <p>You can modify your data:</p>
-                <ul>
-                    <li>Edit or delete journal entries</li>
-                    <li>Update your profile information</li>
-                    <li>Modify your goals and preferences</li>
-                </ul>
-                
-                <h3>6.3 Delete Your Data</h3>
-                <p>You have the right to delete your data:</p>
-                <ul>
-                    <li><strong>Delete Individual Items:</strong> Delete specific journal entries, check-ins, or goals</li>
-                    <li><strong>Delete Account:</strong> Delete your entire account and all associated data from Settings → Account → Delete Account</li>
-                    <li><strong>Data Deletion:</strong> When you delete your account, all your data is permanently deleted within 30 days</li>
-                </ul>
-                
-                <h3>6.4 Opt-Out</h3>
-                <ul>
-                    <li>You can disable notifications in Settings</li>
-                    <li>You can choose not to use the content analysis feature (no data sent to AI services)</li>
-                    <li>You can delete your account at any time</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2>7. Children's Privacy</h2>
-                <p>
-                    Scroll Sense is designed for users aged 12 and older. We do not knowingly collect personal information from children under 13 years of age. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately. If we become aware that we have collected personal information from a child under 13, we will take steps to delete that information.
-                </p>
-            </div>
-            
-            <div class="section">
-                <h2>8. Health Information Disclaimer</h2>
-                <div class="highlight-box">
-                    <strong>⚠️ Important Medical Disclaimer:</strong> Scroll Sense is designed for educational and wellness purposes only. It is NOT a medical device and does NOT provide medical diagnosis, treatment, or professional mental health advice. The mood tracking, content analysis, and wellness features are tools for self-awareness and reflection, not medical treatment. If you are experiencing serious mental health concerns, please consult a qualified healthcare professional.
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>9. International Users</h2>
-                <p>
-                    Scroll Sense is operated from the United States. If you are using the App from outside the United States, please be aware that your information may be transferred to, stored, and processed in the United States. By using the App, you consent to the transfer of your information to the United States.
-                </p>
-            </div>
-            
-            <div class="section">
-                <h2>10. Changes to This Privacy Policy</h2>
-                <p>
-                    We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes. Changes are effective when posted on this page.
-                </p>
-            </div>
-            
-            <div class="section">
-                <h2>11. Contact Us</h2>
-                <p>If you have questions about this Privacy Policy or our data practices, please contact us:</p>
-                
-                <div class="contact-info">
-                    <p><strong>Email:</strong> <a href="mailto:support@scrollsenseapp.com" class="email-link">support@scrollsenseapp.com</a></p>
-                    <p><strong>Subject Line:</strong> Privacy Policy Inquiry</p>
-                    <p>We will respond to your inquiry within 48 hours.</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>12. Data Collection Summary</h2>
-                <p>For quick reference, here's a summary of what data we collect:</p>
-                
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Data Type</th>
-                            <th>Purpose</th>
-                            <th>Stored</th>
-                            <th>Shared with Third Parties</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Email Address</td>
-                            <td>Account creation, authentication, communication</td>
-                            <td>Yes (Firebase)</td>
-                            <td>SendGrid (for emails)</td>
-                        </tr>
-                        <tr>
-                            <td>Password</td>
-                            <td>Account security</td>
-                            <td>Yes (encrypted, Firebase)</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>Mood Data</td>
-                            <td>Mood tracking and insights</td>
-                            <td>Yes (Firebase)</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>Usage Data</td>
-                            <td>Social media usage tracking</td>
-                            <td>Yes (Firebase)</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>Journal Entries</td>
-                            <td>Personal reflections</td>
-                            <td>Yes (Firebase, private by default)</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>Content Analysis Data</td>
-                            <td>AI analysis of social media content</td>
-                            <td>No (not stored)</td>
-                            <td>Yes (Anthropic/OpenAI for analysis only)</td>
-                        </tr>
-                        <tr>
-                            <td>App Usage Analytics</td>
-                            <td>App improvement</td>
-                            <td>Yes (Firebase Analytics)</td>
-                            <td>Firebase/Google Analytics</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-<div class="section">
-    <h2>12.1 App Store Privacy Questionnaire Details</h2>
-    <p>
-        Scroll Sense provides disclosures in Apple App Store Connect regarding the types of data collected and how that data is handled.
-        The items below are provided for additional transparency and align with the App Store Privacy Questionnaire.
-    </p>
-
-    <h3>12.1.1 Data Types Collected</h3>
-    <p>Depending on which features you use, Scroll Sense may collect and process the following data types:</p>
-    <ul>
-        <li><strong>Account Identifiers:</strong> Email address and account-related identifiers used for login and account management</li>
-        <li><strong>User Content:</strong> Journal entries, mood notes, and optional user-provided text/screenshot content submitted for analysis</li>
-        <li><strong>Wellness & Activity Data:</strong> Mood ratings, check-ins, goals, sleep entries, and habit tracking</li>
-        <li><strong>Usage Data:</strong> Feature usage, interaction patterns, and app usage statistics used to improve the app experience</li>
-        <li><strong>Diagnostics:</strong> Crash logs and performance data used for troubleshooting and reliability</li>
-    </ul>
-
-    <h3>12.1.2 Data Linked to the User</h3>
-    <p>
-        Some data is linked to your account because Scroll Sense uses <strong>Firebase Authentication</strong> to support login,
-        cloud sync, and user-specific data storage. This allows your data to remain private and accessible only to you when signed in.
-    </p>
-
-    <h3>12.1.3 Data Used to Track the User</h3>
-    <p>
-        Scroll Sense does <strong>not</strong> use data to track you across other companies’ apps or websites for advertising purposes.
-        If analytics are enabled (such as <strong>Firebase Analytics</strong>), they are used to understand overall app performance and feature usage,
-        and are not used for cross-app advertising or data brokerage.
-    </p>
-
-    <h3>12.1.4 Data Shared with Third Parties</h3>
-    <p>Scroll Sense may share limited data with third-party providers strictly to operate app features:</p>
-    <ul>
-        <li><strong>Firebase (Google):</strong> Authentication and secure cloud storage of user data</li>
-        <li><strong>OpenAI and Anthropic:</strong> Only when you choose AI-powered features, user-submitted content may be transmitted for processing</li>
-        <li><strong>SendGrid (Twilio):</strong> Sending verification emails and account-related messages</li>
-    </ul>
-
-    <div class="highlight-box">
-        <strong>Note:</strong> Scroll Sense does not sell personal data, does not use data for third-party advertising,
-        and does not engage in cross-app tracking.
+<section class="content">
+  <div class="container">
+    <div class="toc">
+      <h3>Quick Navigation</h3>
+      <ul>
+        <li><a href="#overview">Privacy Overview</a></li>
+        <li><a href="#data-collection">What We Collect</a></li>
+        <li><a href="#data-use">How We Use Data</a></li>
+        <li><a href="#data-security">Security</a></li>
+        <li><a href="#your-rights">Your Rights</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
     </div>
-</div>
 
-            <!-- ADDED SECTION: 13. App Store Privacy Disclosure -->
-            <div class="section">
-                <h2>13. App Store Privacy Disclosure</h2>
-                <p>
-                    The information described in this Privacy Policy is consistent with the disclosures provided in the
-                    Apple App Store Privacy Questionnaire.
-                </p>
-                <p>
-                    Data categories disclosed include account identifiers, user-provided content, wellness tracking data,
-                    app usage data, and diagnostic information used solely for app functionality and improvement.
-                </p>
-                <p>
-                    Scroll Sense does not engage in third-party advertising, data brokerage, or cross-app tracking.
-                </p>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>© 2024 Scroll Sense. All rights reserved.</p>
-            <p style="margin-top: 10px;">
-                <a href="index.html">Support</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-            </p>
-        </div>
+    <div class="section" id="overview">
+      <h2>Privacy Overview</h2>
+      <p>Scroll Sense is committed to protecting your privacy. This Privacy Policy explains how we collect, use, secure, and respect your personal information.</p>
+      <div class="highlight">
+        <strong>Core Principle:</strong> Your data belongs to you. We encrypt everything, never sell your information, and give you full control over what we collect.
+      </div>
     </div>
+
+    <div class="section" id="data-collection">
+      <h2>What Information We Collect</h2>
+      
+      <h3>Account Information</h3>
+      <ul>
+        <li>Email address (for authentication and support)</li>
+        <li>Password (hashed and encrypted)</li>
+        <li>Username and profile photo (optional)</li>
+        <li>Avatar customization preferences</li>
+      </ul>
+
+      <h3>Usage Data</h3>
+      <ul>
+        <li>Social media check-in entries (time logged per category)</li>
+        <li>Mood tracking scores and notes</li>
+        <li>Goals and progress tracking</li>
+        <li>Journal entries and reflections</li>
+        <li>Sleep tracking logs</li>
+        <li>Achievements, badges, and streaks</li>
+        <li>Settings and preferences</li>
+      </ul>
+
+      <h3>AI Analysis Data</h3>
+      <p><strong>Important:</strong> When you use the AI content analysis feature:</p>
+      <ul>
+        <li>You paste or upload content for analysis</li>
+        <li>This content is sent to Anthropic Claude or OpenAI for processing</li>
+        <li>You receive back emotional impact scores and insights</li>
+        <li><strong>Content is NOT stored</strong> by Scroll Sense or the AI services after analysis</li>
+      </ul>
+
+      <h3>Technical Data</h3>
+      <ul>
+        <li>Device type and iOS version</li>
+        <li>App version and crash logs (for troubleshooting)</li>
+        <li>IP address and general location (city/region, not precise)</li>
+      </ul>
+
+      <h3>What We DON'T Collect</h3>
+      <ul>
+        <li>Social media account credentials or login information</li>
+        <li>Your actual social media messages or content</li>
+        <li>Precise GPS location</li>
+        <li>Phone number or payment information</li>
+        <li>Any data unrelated to digital wellness</li>
+      </ul>
+    </div>
+
+    <div class="section" id="data-use">
+      <h2>How We Use Your Data</h2>
+      
+      <h3>To Provide the Service</h3>
+      <ul>
+        <li>Display your dashboard, reports, and insights</li>
+        <li>Track your progress toward wellness goals</li>
+        <li>Generate personalized recommendations</li>
+        <li>Sync data across your devices</li>
+        <li>Send timely reminders and notifications</li>
+      </ul>
+
+      <h3>To Improve the App</h3>
+      <ul>
+        <li>Analyze aggregate patterns (never your personal data)</li>
+        <li>Fix bugs and improve stability</li>
+        <li>Develop new features based on user needs</li>
+        <li>Measure app effectiveness through research</li>
+      </ul>
+
+      <h3>To Communicate With You</h3>
+      <ul>
+        <li>Send service-related announcements</li>
+        <li>Respond to support requests</li>
+        <li>Send optional newsletters or tips (you can opt out)</li>
+      </ul>
+
+      <h3>What We DON'T Do</h3>
+      <ul>
+        <li>Sell your data to advertisers or third parties</li>
+        <li>Use your data for targeted advertising</li>
+        <li>Share personal data without your consent (except as required by law)</li>
+        <li>Use data to profile or discriminate</li>
+      </ul>
+    </div>
+
+    <div class="section" id="data-security">
+      <h2>How We Protect Your Data</h2>
+      
+      <h3>Encryption</h3>
+      <p>All data transmitted between your device and our servers uses HTTPS/TLS encryption. This means your data is encrypted in transit and cannot be intercepted.</p>
+
+      <h3>Storage Security</h3>
+      <ul>
+        <li>All data stored on Firebase/Google Cloud, which uses AES-256 encryption</li>
+        <li>Regular security audits and penetration testing</li>
+        <li>Access controls limiting who can view your data</li>
+      </ul>
+
+      <h3>Password Security</h3>
+      <ul>
+        <li>Passwords are hashed using bcrypt (not stored as plain text)</li>
+        <li>Scroll Sense team members cannot see your password</li>
+        <li>Two-factor authentication available on request</li>
+      </ul>
+
+      <h3>What You Should Do</h3>
+      <ul>
+        <li>Use a strong, unique password</li>
+        <li>Don't share your password with anyone</li>
+        <li>Keep your device updated with latest iOS version</li>
+        <li>Log out on shared devices</li>
+      </ul>
+    </div>
+
+    <div class="section" id="your-rights">
+      <h2>Your Privacy Rights</h2>
+      
+      <h3>Access Your Data</h3>
+      <p>You have the right to access all your data. Go to Settings → Data & Privacy → View My Data to see everything we have stored.</p>
+
+      <h3>Export Your Data</h3>
+      <p>Settings → Data & Privacy → Export Data. We provide your complete data as JSON that you can save or import elsewhere.</p>
+
+      <h3>Delete Your Data</h3>
+      <p>You can delete individual entries, or delete your entire account:</p>
+      <ul>
+        <li>Settings → Account → Delete Account</li>
+        <li>All your data will be permanently deleted within 30 days</li>
+        <li>This action cannot be undone</li>
+      </ul>
+
+      <h3>Opt Out of Communications</h3>
+      <ul>
+        <li>Unsubscribe from emails: Click the link in any email</li>
+        <li>Disable notifications: iOS Settings → Notifications → Scroll Sense</li>
+        <li>Opt out of analytics: Settings → Privacy → Disable Analytics</li>
+      </ul>
+
+      <h3>Correct Inaccurate Data</h3>
+      <p>Edit any of your profile information or data entries directly in the app, or contact support@scrollsenseapp.com for help.</p>
+    </div>
+
+    <div class="section" id="contact">
+      <h2>Contact Us</h2>
+      <p><strong>Privacy Questions:</strong> support@scrollsenseapp.com</p>
+      <p><strong>Response Time:</strong> 24-48 hours</p>
+      <p>Include "Privacy" in your subject line for faster routing.</p>
+
+      <div class="highlight">
+        <strong>Data Protection Officer:</strong> We take privacy seriously. If you believe we've mishandled your data, please contact us immediately.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy occasionally. When we do, we'll update the "Last updated" date and notify you via email if changes are significant. Continued use of Scroll Sense means you accept the updated policy.</p>
+    </div>
+
+    <div class="section">
+      <h2>Additional Information</h2>
+      
+      <h3>CCPA Compliance</h3>
+      <p>If you're a California resident, you have additional rights under the California Consumer Privacy Act. Contact support@scrollsenseapp.com with "CCPA" in the subject line for detailed information.</p>
+
+      <h3>GDPR Compliance</h3>
+      <p>If you're in the EU, your data is protected under GDPR regulations. You have rights to access, portability, erasure, and more. See our GDPR supplement at www.scrollsenseapp.com/gdpr</p>
+
+      <h3>Children's Privacy</h3>
+      <p>Scroll Sense is designed for teens (13+) with parental consent. We comply with COPPA and related laws protecting children's privacy. Parents/guardians can request information about their child's account.</p>
+    </div>
+
+    <div style="margin-top: 60px; padding: 20px; background: var(--bg-light); border-radius: 8px; text-align: center;">
+      <p style="color: var(--text-light); font-size: 0.9rem; margin: 0;">Have privacy questions? <strong><a href="mailto:support@scrollsenseapp.com" style="color: var(--primary); text-decoration: none;">Contact us anytime</a></strong></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2025 Scroll Sense. Your privacy is important to us.</p>
+    <p style="margin-top: 10px; font-size: 0.85rem;"><a href="index.html" style="color: rgba(255,255,255,0.7); text-decoration: none;">Home</a> | <a href="terms.html" style="color: rgba(255,255,255,0.7); text-decoration: none;">Terms</a> | <a href="support.html" style="color: rgba(255,255,255,0.7); text-decoration: none;">Support</a></p>
+  </div>
+</footer>
 </body>
 </html>
