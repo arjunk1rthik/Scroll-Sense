@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Feature Guide - Scroll Sense</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #764ba2;
+  --accent: #00d4ff;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --bg-light: #f8fafc;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-light: #e5e7eb;
+  --white: #ffffff;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: var(--white);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navigation */
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+nav a:hover, nav a.active {
+  color: var(--primary);
+}
+
+/* Hero */
+.hero {
+  padding: 80px 0 60px;
+  background: linear-gradient(135deg, var(--white) 0%, var(--bg-light) 100%);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Content */
+.content {
+  padding: 80px 0;
+}
+
+.feature-section {
+  margin-bottom: 60px;
+}
+
+.feature-section h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--primary);
+  display: inline-block;
+  color: var(--text-dark);
+}
+
+.feature-section h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.feature-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.feature-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+}
+
+.feature-card h4 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.feature-card p {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  padding: 0.5rem 0;
+  padding-left: 1.8rem;
+  position: relative;
+  color: var(--text-dark);
+}
+
+.feature-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Info Box */
+.info-box {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-left: 4px solid var(--primary);
+  padding: 20px 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.info-box h5 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.info-box p {
+  color: var(--text-dark);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* How-to Guide */
+.how-to {
+  background: var(--bg-light);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.how-to h5 {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.step {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--white);
+  border-radius: 50%;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content p {
+  color: var(--text-dark);
+  margin: 0;
+}
+
+/* Feature Grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.grid-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.grid-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+  transform: translateY(-5px);
+}
+
+.grid-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.grid-card h4 {
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.grid-card p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* FAQ Section */
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.faq-item:hover {
+  border-color: var(--primary);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.faq-question {
+  font-weight: 700;
+  color: var(--text-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  color: var(--text-light);
+  margin-top: 1rem;
+  display: none;
+  line-height: 1.8;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+/* Footer */
+footer {
+  background: var(--text-dark);
+  color: var(--white);
+  padding: 60px 0 30px;
+  margin-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 30px;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .feature-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <div class="logo">📱 Scroll Sense</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="findings.html">Research</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="information.html" class="active">Guide</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Complete Feature Guide</h1>
+    <p>Master every feature of Scroll Sense and unlock your full potential for digital wellness</p>
+  </div>
+</section>
+
+<!-- Content -->
+<section class="content">
+  <div class="container">
+    <!-- Introduction -->
+    <div class="feature-section">
+      <h2>🎯 What is Scroll Sense?</h2>
+      <p style="margin-top: 1rem; color: var(--text-light); font-size: 1.05rem;">Scroll Sense is a comprehensive digital wellness app that helps users reduce mindless scrolling and build healthier routines through:</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 2rem;">
+        <div style="padding: 20px; background: var(--bg-light); border-radius: 8px;">
+          <h4 style="color: var(--primary); font-weight: 700;">Morning Planning</h4>
+          <p style="color: var(--text-light); margin: 0; font-size: 0.9rem;">Set daily goals & intentions</p>
+        </div>
+        <div style="padding: 20px; background: var(--bg-light); border-radius: 8px;">
+          <h4 style="color: var(--primary); font-weight: 700;">Evening Reflection</h4>
+          <p style="color: var(--text-light); margin: 0; font-size: 0.9rem;">Track usage & mood patterns</p>
+        </div>
+        <div style="padding: 20px; background: var(--bg-light); border-radius: 8px;">
+          <h4 style="color: var(--primary); font-weight: 700;">App Blocking</h4>
+          <p style="color: var(--text-light); margin: 0; font-size: 0.9rem;">Focus shields & time boundaries</p>
+        </div>
+        <div style="padding: 20px; background: var(--bg-light); border-radius: 8px;">
+          <h4 style="color: var(--primary); font-weight: 700;">Mood Tracking</h4>
+          <p style="color: var(--text-light); margin: 0; font-size: 0.9rem;">Emotional wellness insights</p>
+        </div>
+        <div style="padding: 20px; background: var(--bg-light); border-radius: 8px;">
+          <h4 style="color: var(--primary); font-weight: 700;">Gamification</h4>
+          <p style="color: var(--text-light); margin: 0; font-size: 0.9rem;">XP, streaks, badges & more</p>
+        </div>
+        <div style="padding: 20px; background: var(--bg-light); border-radius: 8px;">
+          <h4 style="color: var(--primary); font-weight: 700;">AI Guidance</h4>
+          <p style="color: var(--text-light); margin: 0; font-size: 0.9rem;">Personalized wellness support</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Experience -->
+    <div class="feature-section">
+      <h2>⚙️ Core User Experience</h2>
+
+      <div class="feature-card">
+        <h4>📊 Home Hub</h4>
+        <p>Your central command center with personalized greeting, streak indicators, XP progress, and quick access to daily check-ins, goals, mindfulness, sleep tracking, journal, reports, rewards, Pomodoro, and app blocking.</p>
+      </div>
+
+      <div class="feature-card">
+        <h4>🧭 Bottom Navigation</h4>
+        <p>Fast tab-level navigation supporting Dashboard, Report, Mindful, Journal, and More—with direct pathways to Goals, Rewards, Sleep, Pomodoro, Plan Your Day, and App Blocking.</p>
+      </div>
+
+      <div class="feature-card">
+        <h4>🎓 Guided Flows</h4>
+        <p>Onboarding tours and feature-level guided tours help first-time users understand what to do and activate value faster, reducing overwhelm.</p>
+      </div>
+    </div>
+
+    <!-- Major Features -->
+    <div class="feature-section">
+      <h2>✨ Full Feature Encyclopedia</h2>
+
+      <h3>1. Daily Check-In System</h3>
+      <div class="feature-card">
+        <h4>Track Your Daily Habits</h4>
+        <p>Complete a structured daily check-in with social media usage logging, mood tracking, notes, and reflection.</p>
+        <ul class="feature-list">
+          <li>Log usage across 6 content categories (Connection, Entertainment, Learning, Gaming, Trends, Appearance)</li>
+          <li>Track mood changes and how content made you feel</li>
+          <li>Add personal notes and reflections</li>
+          <li>Review follow-through on morning intentions</li>
+          <li>Create multiple check-ins per day if needed</li>
+          <li>Browse check-in history in calendar view</li>
+        </ul>
+      </div>
+
+      <div class="how-to">
+        <h5>📱 How to Create a Daily Check-In</h5>
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content"><p>Open Scroll Sense and tap Daily Check-In</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content"><p>Log time spent in each category (hours & minutes)</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content"><p>Rate your mood (1-5 scale) and note how it changed</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content"><p>Add optional notes about your experience</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">5</div>
+          <div class="step-content"><p>Tap "Save Check-In"</p></div>
+        </div>
+      </div>
+
+      <h3>2. Social Media Time Planner</h3>
+      <div class="feature-card">
+        <h4>Plan Your Day with Intention</h4>
+        <p>Set category-specific social media targets each morning to go into your day with intention instead of impulse.</p>
+        <ul class="feature-list">
+          <li>Set time targets for each category</li>
+          <li>Choose "At Most" or "At Least" options</li>
+          <li>Save daily plans for reference</li>
+          <li>View planner history and patterns</li>
+          <li>Compare plans vs. actual usage in Dashboard</li>
+        </ul>
+      </div>
+
+      <h3>3. Goals (Detailed)</h3>
+      <div class="feature-card">
+        <h4>Design Your Wellness Goals</h4>
+        <p>Create custom, meaningful goals that match your real life with timing windows, completion targets, and satisfaction tracking.</p>
+        <ul class="feature-list">
+          <li>Normal, timing-based, and social-media style goals</li>
+          <li>Set duration, date windows, and targets</li>
+          <li>Enable app blocking for goal windows</li>
+          <li>Rate goal satisfaction when completed</li>
+          <li>Access suggested & predefined goal options</li>
+          <li>Organize goals into custom categories</li>
+          <li>Track progress and completion statistics</li>
+        </ul>
+      </div>
+
+      <h3>4. Plan Your Day</h3>
+      <div class="feature-card">
+        <h4>Turn Intentions into Actionable Timelines</h4>
+        <p>Create practical day-plan schedules with time blocks, priorities, and reminders that actually work.</p>
+        <ul class="feature-list">
+          <li>Add scheduled day-plan items with times</li>
+          <li>Set time blocks and priorities</li>
+          <li>Create quick 10-minute break blocks</li>
+          <li>Save and reuse day-plan templates</li>
+          <li>Search and rename saved entries</li>
+          <li>Share plans with parents, friends, or accountability partners</li>
+          <li>Delay schedules when life shifts unexpectedly</li>
+          <li>Receive start/end and completion reminders</li>
+        </ul>
+      </div>
+
+      <h3>5. Mindfulness & Meditation</h3>
+      <div class="feature-card">
+        <h4>Interrupt Autopilot with Mindful Moments</h4>
+        <p>Break the scrolling cycle with customizable reminders, breathing exercises, and gentle mindfulness nudges.</p>
+        <ul class="feature-list">
+          <li>Toggle mindfulness reminders on/off</li>
+          <li>Set custom reminder intervals</li>
+          <li>Use multiple breathing exercise lengths</li>
+          <li>Customize reminder messages</li>
+          <li>Add your own personal reminders</li>
+          <li>Optionally block apps during mindfulness sessions</li>
+          <li>Receive auto-nudges based on usage thresholds</li>
+        </ul>
+      </div>
+
+      <h3>6. Sleep & Bedtime</h3>
+      <div class="feature-card">
+        <h4>Protect Your Rest</h4>
+        <p>Track how social media affects your sleep and use bedtime app blocking to create healthy evening boundaries.</p>
+        <ul class="feature-list">
+          <li>Log bedtime and wake time</li>
+          <li>Rate sleep quality</li>
+          <li>Note if social media affected your sleep</li>
+          <li>Add detailed sleep notes</li>
+          <li>Enable bedtime app blocking</li>
+          <li>Configure separate weekday/weekend sleep behavior</li>
+          <li>View sleep history and trend statistics</li>
+        </ul>
+      </div>
+
+      <h3>7. App Blocking (Focus Shields)</h3>
+      <div class="feature-card">
+        <h4>Protect Your Focus Time</h4>
+        <p>Robust app blocking with context-aware blocking lists and clear notification of why apps are restricted.</p>
+        <ul class="feature-list">
+          <li>Master "Focus Shields" toggle for overall control</li>
+          <li>Default, Pomodoro, Goal, Mindful, and Sleep blocking lists</li>
+          <li>Scheduled blocking windows with active weekday selection</li>
+          <li>Start/end schedule notifications</li>
+          <li>Dynamic reason tracking (Sleep, Goals, Pomodoro, Mindful, Focus)</li>
+          <li>Requires Screen Time/Family Controls permission</li>
+        </ul>
+      </div>
+
+      <h3>8. Journal & Reflection</h3>
+      <div class="feature-card">
+        <h4>Process Emotions & Spot Patterns</h4>
+        <p>Write private entries, track mood trends, tag reflections, and build deep self-awareness over time.</p>
+        <ul class="feature-list">
+          <li>Create entries with title and long-form text</li>
+          <li>Tag entries for organization</li>
+          <li>Mark entries as private (default)</li>
+          <li>Record mood score with each entry</li>
+          <li>Track journal streaks and average mood</li>
+          <li>Edit and delete entries anytime</li>
+          <li>View historical mood trends and patterns</li>
+        </ul>
+      </div>
+
+      <h3>9. Pomodoro Focus Sessions</h3>
+      <div class="feature-card">
+        <h4>Convert Goals into Focus Intervals</h4>
+        <p>Use classic work/break cycles with customization, ambient sounds, and app blocking for deep focus.</p>
+        <ul class="feature-list">
+          <li>Start/pause/reset focus sessions</li>
+          <li>Customize work & break durations</li>
+          <li>Use preset focus structures</li>
+          <li>Customize visuals, themes & animations</li>
+          <li>Play ambient background sounds</li>
+          <li>Enable app blocking during sessions</li>
+          <li>One-shot blocking for individual sessions</li>
+          <li>Track Pomodoro history & productivity</li>
+        </ul>
+      </div>
+
+      <h3>10. Dashboard & Insights</h3>
+      <div class="feature-card">
+        <h4>See Your Progress at a Glance</h4>
+        <p>Comprehensive dashboard with Scroll Score, multiple insight cards, and user-controlled visibility.</p>
+        <ul class="feature-list">
+          <li>Scroll Score (composite wellness metric)</li>
+          <li>Insight cards: mood, goals, habits, sleep impact, digital diet</li>
+          <li>Expand/collapse sections as needed</li>
+          <li>Control which cards are visible</li>
+          <li>Enable/disable entire dashboard</li>
+          <li>View trend-level progress over time</li>
+        </ul>
+      </div>
+
+      <h3>11. AI-Powered Content Analysis</h3>
+      <div class="feature-card">
+        <h4>Understand Content Impact</h4>
+        <p>Paste text or upload screenshots to get AI-powered analysis of how specific content might affect your mental health.</p>
+        <ul class="feature-list">
+          <li>Paste social media text for analysis</li>
+          <li>Upload screenshots with automatic text extraction</li>
+          <li>Receive wellness-oriented interpretation</li>
+          <li>Get impact-focused recommendations</li>
+          <li>See risk scores and well-being indicators</li>
+          <li>Content is NOT stored after analysis</li>
+        </ul>
+      </div>
+
+      <h3>12. AI Wellness Assistant</h3>
+      <div class="feature-card">
+        <h4>In-App Coaching & Support</h4>
+        <p>Ask predefined guidance prompts or get practical tips without leaving the app for quick, accessible support.</p>
+        <ul class="feature-list">
+          <li>Ask about app use, FOMO, habits, wellness</li>
+          <li>Get practical, personalized tips</li>
+          <li>Fast, searchable guidance library</li>
+          <li>Available 24/7 within the app</li>
+        </ul>
+      </div>
+
+      <h3>13. Rewards & Gamification</h3>
+      <div class="feature-card">
+        <h4>Make Wellness Fun & Motivating</h4>
+        <p>Keep behavior change engaging with points, streaks, badges, leagues, and unlockable rewards.</p>
+        <ul class="feature-list">
+          <li>Earn XP for healthy actions</li>
+          <li>Collect gems currency and level up</li>
+          <li>Daily and weekly challenges</li>
+          <li>Track streaks with freeze protection</li>
+          <li>Unlock badges and achievements</li>
+          <li>Compete in leagues and leaderboards</li>
+          <li>Earn chests with rewards</li>
+          <li>Access reward shop with items & utilities</li>
+        </ul>
+      </div>
+
+      <h3>14. Settings & Personalization</h3>
+      <div class="feature-card">
+        <h4>Make It Yours</h4>
+        <p>Customize every aspect of your Scroll Sense experience to match your style and needs.</p>
+        <ul class="feature-list">
+          <li>Change username and profile photo</li>
+          <li>Build & customize your avatar</li>
+          <li>Select app background and theme</li>
+          <li>Adjust font size for readability</li>
+          <li>Toggle dark mode options</li>
+          <li>Configure dashboard visibility</li>
+          <li>Set reminder defaults and preferences</li>
+          <li>Access privacy & legal documents</li>
+          <li>Send support feedback</li>
+          <li>Quick access to crisis resources</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- How-To Guides -->
+    <div class="feature-section">
+      <h2>📚 How-To Guide</h2>
+
+      <h3>Creating & Managing Content</h3>
+
+      <div class="how-to">
+        <h5>Create a Goal</h5>
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content"><p>Tap <strong>Goals</strong> in main navigation</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content"><p>Tap "+" to create new goal</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content"><p>Choose goal type (normal, timing, social media)</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content"><p>Set duration, target, and optional blocking</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">5</div>
+          <div class="step-content"><p>Tap "Save Goal"</p></div>
+        </div>
+      </div>
+
+      <div class="how-to">
+        <h5>Create a Journal Entry</h5>
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content"><p>Tap <strong>Journal</strong> in navigation</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content"><p>Tap "+" to create new entry</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content"><p>Add title and write your reflection</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content"><p>Rate your mood (1-5 scale)</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">5</div>
+          <div class="step-content"><p>Add tags and mark as private if desired</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">6</div>
+          <div class="step-content"><p>Tap "Save Entry"</p></div>
+        </div>
+      </div>
+
+      <div class="how-to">
+        <h5>Share Your Plan with Others</h5>
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content"><p>Tap <strong>Plan Your Day</strong></p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content"><p>Select a saved plan or create one</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content"><p>Tap the share button (↗)</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content"><p>Choose contact (parent, friend, mentor)</p></div>
+        </div>
+        <div class="step">
+          <div class="step-number">5</div>
+          <div class="step-content"><p>Send via your preferred method</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Start -->
+    <div class="feature-section">
+      <h2>🚀 Quick Start Guide</h2>
+
+      <div class="info-box">
+        <h5>⏰ Recommended Daily Routine</h5>
+        <p><strong>Morning:</strong> Set your daily goals for the day (in minutes) so you have a clear target.<br><strong>Evening:</strong> Complete your Daily Check-In to log what you actually did and how it affected your mood.<br><strong>Best results:</strong> Do this every day—goals first, check-in later.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="grid-card">
+          <div class="icon">🌅</div>
+          <h4>Morning (5 min)</h4>
+          <p>Open app → Set daily goals → Review plan → Start day intentionally</p>
+        </div>
+        <div class="grid-card">
+          <div class="icon">⏱️</div>
+          <div class="icon">📱</div>
+          <h4>Throughout Day</h4>
+          <p>Use mindfulness reminders → App blocking during focus time → Stay intentional</p>
+        </div>
+        <div class="grid-card">
+          <div class="icon">🌙</div>
+          <h4>Evening (10 min)</h4>
+          <p>Log sleep → Complete daily check-in → Journal reflection → Review progress</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQs -->
+    <div class="feature-section">
+      <h2>❓ Frequently Asked Questions</h2>
+
+      <div class="faq-item active">
+        <div class="faq-question">
+          <span>What's the difference between Goals and Plan Your Day?</span>
+          <span style="color: var(--primary); font-size: 1.3rem;">+</span>
+        </div>
+        <div class="faq-answer">
+          <p><strong>Goals</strong> are behavioral targets (e.g., "reduce Instagram to 1 hour"). <strong>Plan Your Day</strong> is a timeline (e.g., "9-9:30 am study, 3-4 pm break with friends"). Goals track progress; plans structure your day. Use both together for maximum impact.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I enable app blocking?</span>
+          <span style="color: var(--primary); font-size: 1.3rem;">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Go to Settings → App Blocking → Enable Screen Time/Family Controls permission (required by iOS) → Turn on Focus Shields → Select which apps to block by context (Default, Sleep, Goals, Pomodoro, Mindful).</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I export my data?</span>
+          <span style="color: var(--primary); font-size: 1.3rem;">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! Go to Settings → Data & Privacy → Export Data. Your data exports as a JSON file with all entries, goals, and statistics. Share it via email or keep it for your records.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How does the AI analysis work?</span>
+          <span style="color: var(--primary); font-size: 1.3rem;">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Paste social media text or upload a screenshot. Scroll Sense sends it to Anthropic Claude or OpenAI for analysis. You get back emotional impact scores, category classification, and wellness recommendations. Content is NOT stored after analysis.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What if app blocking seems off?</span>
+          <span style="color: var(--primary); font-size: 1.3rem;">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Check that Screen Time/Family Controls permissions are enabled in iOS Settings → Screen Time. Also verify your blocking lists and schedules are active. Some background system behaviors depend on iOS.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I delete my account and data?</span>
+          <span style="color: var(--primary); font-size: 1.3rem;">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes. Go to Settings → Account → Delete Account. This is permanent—all your data will be deleted within 30 days. You can also email support@scrollsenseapp.com for additional data deletion assistance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="information.html">How It Works</a></li>
+          <li><a href="findings.html">Research</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="chatbot.html">AI Assistant</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Scroll Sense. Master your digital wellness journey.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
