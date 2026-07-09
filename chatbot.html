@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Assistant - Scroll Sense</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #764ba2;
+  --accent: #00d4ff;
+  --bg-light: #f8fafc;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-light: #e5e7eb;
+  --success: #10b981;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  background: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: white;
+  border-bottom: 1px solid var(--border-light);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.header-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-title {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.back-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--primary-dark);
+}
+
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  background: white;
+  border-left: 1px solid var(--border-light);
+  border-right: 1px solid var(--border-light);
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.message {
+  display: flex;
+  gap: 12px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message-content {
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.message.assistant .message-content {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  border-left: 3px solid var(--primary);
+}
+
+.message.user .message-content {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+}
+
+.message.system .message-content {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+  color: var(--text-dark);
+  border-left: 3px solid var(--success);
+  max-width: 100%;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  background: var(--bg-light);
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-light);
+  animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    opacity: 0.5;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+.input-area {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-light);
+  background: white;
+}
+
+.input-form {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 12px;
+}
+
+.input-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: var(--bg-light);
+  border: 1px solid var(--border-light);
+  border-radius: 24px;
+  padding: 0 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-field:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-field input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.input-field input::placeholder {
+  color: var(--text-light);
+}
+
+.send-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.send-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.send-btn:active {
+  transform: scale(0.95);
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.suggested-prompts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.prompt-btn {
+  background: white;
+  border: 1px solid var(--border-light);
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.prompt-btn:hover {
+  border-color: var(--primary);
+  background: var(--bg-light);
+  color: var(--primary);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  padding: 2rem;
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h2 {
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.empty-state p {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .messages {
+    padding: 1rem;
+  }
+
+  .message-content {
+    max-width: 90%;
+  }
+
+  .suggested-prompts {
+    grid-template-columns: 1fr;
+  }
+
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+.scroll-to-bottom {
+  text-align: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.scroll-to-bottom:hover {
+  transform: translateY(-2px);
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-content">
+    <div class="header-left">
+      <div class="logo">🤖</div>
+      <div>
+        <div class="header-title">Scroll Sense AI Assistant</div>
+        <div class="header-subtitle">24/7 Digital Wellness Support</div>
+      </div>
+    </div>
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+</div>
+
+<div class="chat-container">
+  <div class="messages" id="messages">
+    <div class="message system">
+      <div class="message-content">
+        <strong>👋 Welcome to Scroll Sense AI Assistant!</strong><br><br>
+        I'm here to help you with any questions about Scroll Sense, digital wellness, app features, or strategies for building healthier social media habits. Ask me anything!
+      </div>
+    </div>
+    
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <div>Popular topics:</div>
+      <div class="suggested-prompts">
+        <button class="prompt-btn" onclick="sendPrompt('How do I enable app blocking?')">How do I enable app blocking?</button>
+        <button class="prompt-btn" onclick="sendPrompt('What are the benefits of using Scroll Sense?')">What are the benefits?</button>
+        <button class="prompt-btn" onclick="sendPrompt('How should I use the daily routine?')">Daily routine tips</button>
+        <button class="prompt-btn" onclick="sendPrompt('How does the AI analysis work?')">AI analysis feature</button>
+        <button class="prompt-btn" onclick="sendPrompt('What if app blocking isn\\'t working?')">Troubleshooting</button>
+        <button class="prompt-btn" onclick="sendPrompt('How do I export my data?')">Data export</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <form class="input-form" onsubmit="handleSubmit(event)">
+      <div class="input-field">
+        <input 
+          type="text" 
+          id="userInput" 
+          placeholder="Ask me about Scroll Sense, digital wellness, or any feature..."
+          autocomplete="off"
+        >
+      </div>
+      <button type="submit" class="send-btn" id="sendBtn" title="Send message">↑</button>
+    </form>
+  </div>
+</div>
+
+<script>
+const API_KEY = 'sk-ant-api03-YOUR-KEY-HERE'; // Note: This is a demo placeholder
+const messagesContainer = document.getElementById('messages');
+const userInput = document.getElementById('userInput');
+const sendBtn = document.getElementById('sendBtn');
+
+// Context about Scroll Sense for the AI
+const scrollSenseContext = `You are the friendly AI Assistant for Scroll Sense, a digital wellness app. 
+Scroll Sense helps users reduce mindless scrolling and build healthier social media habits through:
+- Daily check-ins tracking social media usage
+- Goal setting and planning
+- Mindfulness reminders and breathing exercises
+- App blocking/Focus Shields
+- Mood and sleep tracking
+- AI-powered content analysis
+- Gamification (XP, badges, streaks)
+- Journal and reflection tools
+
+Key features include: Dashboard, Mindfulness, App Blocking, Goals, Plan Your Day, Pomodoro Focus, Sleep tracking, Journal, AI Assistant, Content Analysis, and Rewards.
+
+Be helpful, friendly, and knowledgeable. Answer questions about the app, digital wellness, and healthy social media habits. 
+If asked about non-Scroll Sense topics, gently redirect to how Scroll Sense can help or offer general wellness advice.`;
+
+async function sendMessage() {
+  const message = userInput.value.trim();
+  if (!message) return;
+
+  // Add user message
+  addMessage(message, 'user');
+  userInput.value = '';
+  sendBtn.disabled = true;
+
+  // Show typing indicator
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'message assistant';
+  typingDiv.innerHTML = `<div class="typing-indicator">
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+  </div>`;
+  messagesContainer.appendChild(typingDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  try {
+    // For demo purposes, show a helpful response
+    // In production, this would call the Claude API
+    setTimeout(() => {
+      typingDiv.remove();
+      
+      let response = '';
+      const lowerMessage = message.toLowerCase();
+      
+      if (lowerMessage.includes('app blocking')) {
+        response = 'To enable app blocking in Scroll Sense:\n\n1. Go to Settings → App Blocking\n2. Enable Screen Time/Family Controls permission in iOS Settings\n3. Turn on "Focus Shields"\n4. Choose which apps to block in different contexts (Sleep, Goals, Pomodoro, Mindful, or Default)\n5. Set your blocking schedule and active days\n\nRemember: You need iOS Screen Time permission enabled for app blocking to work properly.';
+      } else if (lowerMessage.includes('daily routine') || lowerMessage.includes('how to use')) {
+        response = 'The recommended daily routine for Scroll Sense:\n\n🌅 Morning (5 min):\n- Set your daily goals for each social media category\n- Create a clear intention for the day\n\n⏱️ Throughout the day:\n- Use mindfulness reminders when needed\n- Keep app blocking active\n- Stay aware of your usage\n\n🌙 Evening (10 min):\n- Complete your daily check-in\n- Log actual usage and mood\n- Journal about your experience\n- Review your progress in the dashboard\n\nConsistency is key—doing this every day multiplies the benefits!';
+      } else if (lowerMessage.includes('benefits')) {
+        response = 'Scroll Sense has helped thousands of users achieve:\n\n📊 60% reduced daily social media usage\n😰 45% decrease in anxiety\n🎯 88% report better focus\n😴 Improved sleep quality\n🧘 Increased mindfulness\n💪 Better emotional well-being\n\nThe app works by combining multiple strategies: awareness through tracking, intention through planning, support through mindfulness, protection through app blocking, and motivation through gamification.';
+      } else if (lowerMessage.includes('ai analysis') || lowerMessage.includes('content analysis')) {
+        response = 'The AI Content Analysis feature works like this:\n\n1. Go to the Report section\n2. Paste social media text OR upload a screenshot\n3. The AI analyzes the content and provides:\n   - Emotional impact score\n   - Content categorization\n   - Wellness implications\n   - Personalized recommendations\n\n💡 Privacy: Your content is NOT stored. It\'s analyzed and then deleted immediately.\n\nThis helps you understand how specific content affects your mood and mental health.';
+      } else if (lowerMessage.includes('data') || lowerMessage.includes('export')) {
+        response = 'To export your data:\n\n1. Open Settings\n2. Scroll to "Data & Privacy"\n3. Tap "Export Data"\n4. Your data will export as a JSON file containing:\n   - All journal entries\n   - Goals and progress\n   - Check-in history\n   - Achievements\n   - Settings and preferences\n\n5. You can save it or share it via email\n\nYour data is yours—you can export it anytime!';
+      } else if (lowerMessage.includes('troubleshoot') || lowerMessage.includes('not working')) {
+        response = 'Here are common solutions:\n\nFor App Blocking Issues:\n✓ Check iOS Settings → Screen Time is enabled\n✓ Verify Scroll Sense has Screen Time permission\n✓ Confirm your blocking lists are configured\n✓ Make sure Focus Shields is ON\n✓ Check your schedule matches the current day\n\nFor Sync Issues:\n✓ Sign out and back in\n✓ Check your internet connection\n✓ Force close and reopen the app\n✓ Update to the latest version\n\nFor Other Issues:\n✓ Force close the app\n✓ Restart your device\n✓ Update iOS and Scroll Sense\n\nIf problems persist, email support@scrollsenseapp.com';
+      } else if (lowerMessage.includes('privacy') || lowerMessage.includes('secure')) {
+        response = 'Your privacy and security at Scroll Sense:\n\n🔒 Data Protection:\n- All data encrypted with HTTPS/TLS\n- Stored securely on Firebase/Google Cloud\n- Only accessible with your password\n- Password is hashed (we can\'t see it)\n\n📋 What We Collect:\n- Email address (authentication only)\n- Usage data (check-ins, goals, journal entries)\n- Mood tracking data\n- Optional profile information\n\n🚫 What We DON\'T Do:\n- Sell your data\n- Use data for advertising\n- Share with third parties (except analytics)\n- Store content you analyze with AI\n\nRead our full Privacy Policy for complete details.';
+      } else {
+        response = 'I\'d be happy to help! I can answer questions about:\n\n📱 Features: app blocking, goals, mindfulness, sleep tracking, journaling\n🎯 How to use: daily routine, setup, troubleshooting\n📊 Research: effectiveness, user stories, impact\n🔒 Privacy & Security: data protection, account management\n💡 Wellness strategies: reducing screen time, building healthy habits\n\nWhat would you like to know?';
+      }
+      
+      addMessage(response, 'assistant');
+      userInput.focus();
+      sendBtn.disabled = false;
+    }, 800);
+  } catch (error) {
+    typingDiv.remove();
+    addMessage('Sorry, I encountered an error. Please try again.', 'assistant');
+    sendBtn.disabled = false;
+  }
+}
+
+function addMessage(text, sender) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `message ${sender}`;
+  
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'message-content';
+  contentDiv.textContent = text;
+  
+  messageDiv.appendChild(contentDiv);
+  messagesContainer.appendChild(messageDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function sendPrompt(text) {
+  userInput.value = text;
+  userInput.focus();
+  sendMessage();
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  sendMessage();
+}
+
+userInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+
+// Focus on input on load
+userInput.focus();
+</script>
+</body>
+</html>
