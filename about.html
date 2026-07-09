@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - Scroll Sense</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #764ba2;
+  --bg-light: #f8fafc;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-light: #e5e7eb;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  color: var(--text-dark);
+  background: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav {
+  background: white;
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a:hover, nav a.active {
+  color: var(--primary);
+}
+
+.hero {
+  padding: 80px 0 60px;
+  background: linear-gradient(135deg, white 0%, var(--bg-light) 100%);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.content {
+  padding: 80px 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--primary);
+  display: inline-block;
+}
+
+.mission-card {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 60px 40px;
+  border-radius: 12px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.mission-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mission-card p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.value-card {
+  background: white;
+  border: 2px solid var(--border-light);
+  border-radius: 12px;
+  padding: 30px;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.value-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+  transform: translateY(-5px);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.value-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.value-card p {
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+.story-section {
+  background: var(--bg-light);
+  padding: 60px 0;
+  margin: 60px 0;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.story-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+}
+
+.story-content p {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.story-visual {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 12px;
+  padding: 40px;
+  color: white;
+  text-align: center;
+}
+
+.research-highlight {
+  background: white;
+  border-left: 4px solid var(--primary);
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.research-highlight strong {
+  color: var(--primary);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.team-section {
+  margin-bottom: 60px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.team-member {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.team-member:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+  transform: translateY(-5px);
+}
+
+.team-avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.team-member h4 {
+  color: var(--text-dark);
+  margin-bottom: 0.3rem;
+}
+
+.team-member .role {
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.team-member p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.cta-section {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 60px 40px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: white;
+  color: var(--primary);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+footer {
+  background: var(--text-dark);
+  color: white;
+  padding: 60px 0 30px;
+  margin-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 30px;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container">
+    <div class="logo">📱 Scroll Sense</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="findings.html">Research</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h1>About Scroll Sense</h1>
+    <p>We're on a mission to help people build healthier relationships with technology</p>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container">
+    <!-- Mission -->
+    <div class="mission-card">
+      <h2>Our Mission</h2>
+      <p>To empower people—especially teens and young adults—to take control of their digital wellness by providing evidence-based tools, support, and community that transform social media use from mindless scrolling into intentional, purposeful engagement.</p>
+    </div>
+
+    <!-- Values -->
+    <h2 class="section-title">Our Values</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🔬</div>
+        <h3>Evidence-Based</h3>
+        <p>Everything in Scroll Sense is grounded in research. Our features, impact claims, and strategies are validated through rigorous testing and peer-reviewed science.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3>User-Centered</h3>
+        <p>We build what users actually need, not what we think they should want. Your feedback shapes every feature and improvement we make.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">🔒</div>
+        <h3>Privacy First</h3>
+        <p>Your data belongs to you. We encrypt everything, never sell your information, and give you full control over what we collect and how we use it.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <h3>Supportive, Not Shaming</h3>
+        <p>We don't judge or shame anyone for social media use. Scroll Sense is about building healthier habits with compassion and encouragement, not punishment.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">♿</div>
+        <h3>Accessible</h3>
+        <p>Digital wellness should be available to everyone, regardless of ability, background, or economic status. Accessibility is built into everything we do.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <h3>Impact-Driven</h3>
+        <p>We measure success by the real, meaningful change we create in users' lives—not vanity metrics. Every decision we make considers our impact on digital wellness.</p>
+      </div>
+    </div>
+
+    <!-- Story -->
+    <section class="story-section">
+      <div class="container">
+        <h2 class="section-title">Our Story</h2>
+
+        <div class="story-grid">
+          <div class="story-content">
+            <h3>The Problem We Saw</h3>
+            <p>Social media was designed to be addictive. Algorithms optimize for engagement at the expense of user well-being, and most people felt powerless to change their habits. Anxiety, sleep disruption, and reduced focus were common complaints—especially among teens.</p>
+            <p>Existing solutions were either too punitive (complete blocking) or ineffective (generic productivity apps). We needed something that treated the root cause: helping people become intentional and aware of their choices.</p>
+          </div>
+
+          <div class="story-visual">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🚀</div>
+            <h3 style="margin-bottom: 1rem;">Building the Solution</h3>
+            <p>We combined behavioral psychology, digital wellness research, and user feedback to create Scroll Sense—a comprehensive platform that makes it easy to:</p>
+            <ul style="text-align: left; margin: 1.5rem 0; list-style-position: inside;">
+              <li>Track your habits and understand patterns</li>
+              <li>Plan your day with intention</li>
+              <li>Take mindful breaks</li>
+              <li>Protect your focus and sleep</li>
+              <li>Reflect and build awareness</li>
+              <li>Stay motivated with gamification</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-dark);">Research-Backed Results</h3>
+        <div class="research-highlight">
+          <strong>60% of users reduced daily social media usage</strong>
+          <p>With clinically meaningful improvements in anxiety, focus, sleep quality, and emotional well-being.</p>
+        </div>
+        <div class="research-highlight">
+          <strong>Statistical significance: p = 1.4 × 10⁻⁶</strong>
+          <p>These aren't random fluctuations—they're real, measurable, scientifically validated improvements.</p>
+        </div>
+        <div class="research-highlight">
+          <strong>Heavy users benefit most</strong>
+          <p>Those most addicted to social media experienced the greatest benefits—exactly who needs help the most.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <h2 class="section-title" style="margin-top: 80px;">Meet the Team</h2>
+    <div class="team-section">
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-avatar">AR</div>
+          <h4>Arjun Karthik</h4>
+          <div class="role">Founder & Developer</div>
+          <p>High school entrepreneur and digital wellness advocate. Founded Riffs for Heroes and Scroll Sense to create meaningful impact through technology.</p>
+        </div>
+
+        <div class="team-member">
+          <div class="team-avatar">KK</div>
+          <h4>Karthik Karthikeyan</h4>
+          <div class="role">Advisor & Strategy</div>
+          <p>20+ years enterprise technology leadership. Supports vision, strategy, and growth. Believes in technology that serves human well-being.</p>
+        </div>
+
+        <div class="team-member">
+          <div class="team-avatar">RC</div>
+          <h4>Research Community</h4>
+          <div class="role">Data & Validation</div>
+          <p>Rigorous validation through peer-reviewed research. Every feature and claim is backed by data, not assumptions.</p>
+        </div>
+
+        <div class="team-member">
+          <div class="team-avatar">UC</div>
+          <h4>User Community</h4>
+          <div class="role">Co-Creators</div>
+          <p>Our users shape Scroll Sense. Your feedback, insights, and stories directly influence every update and new feature.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Join the Digital Wellness Movement</h2>
+      <p>Thousands of people are already taking back control. Be part of the change.</p>
+      <a href="https://apps.apple.com/us/app/scroll-sense/id6755644401" class="cta-btn">Download Scroll Sense</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="information.html">How It Works</a></li>
+          <li><a href="findings.html">Research</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Scroll Sense. Building a healthier digital world.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
