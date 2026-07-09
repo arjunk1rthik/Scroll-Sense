@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ - Scroll Sense</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #764ba2;
+  --bg-light: #f8fafc;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-light: #e5e7eb;
+  --success: #10b981;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  color: var(--text-dark);
+  background: white;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav {
+  background: white;
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a:hover, nav a.active {
+  color: var(--primary);
+}
+
+.hero {
+  padding: 80px 0 60px;
+  background: linear-gradient(135deg, white 0%, var(--bg-light) 100%);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+.content {
+  padding: 80px 0;
+}
+
+.category {
+  margin-bottom: 60px;
+}
+
+.category-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--primary);
+  color: var(--text-dark);
+}
+
+.faq-item {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.faq-item.open {
+  border-color: var(--primary);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.faq-question {
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--text-dark);
+  background: var(--bg-light);
+  user-select: none;
+}
+
+.faq-question:hover {
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.faq-toggle {
+  color: var(--primary);
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+}
+
+.faq-item.open .faq-toggle {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.open .faq-answer {
+  padding: 20px;
+  max-height: 500px;
+}
+
+.faq-answer p {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.faq-answer ul {
+  margin-left: 20px;
+  margin-bottom: 1rem;
+}
+
+.faq-answer li {
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.contact-box {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  margin: 60px 0;
+}
+
+.contact-box h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.contact-box p {
+  margin-bottom: 1rem;
+  opacity: 0.95;
+}
+
+.contact-box a {
+  color: white;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+footer {
+  background: var(--text-dark);
+  color: white;
+  padding: 60px 0 30px;
+  margin-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 30px;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .category-title {
+    font-size: 1.5rem;
+  }
+
+  .faq-question {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+.accent {
+  color: var(--primary);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container">
+    <div class="logo">📱 Scroll Sense</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="findings.html">Research</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="information.html">Guide</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h1>Frequently Asked Questions</h1>
+    <p>Find answers to common questions about Scroll Sense</p>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container">
+    <!-- Getting Started -->
+    <div class="category">
+      <h2 class="category-title">🚀 Getting Started</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What is Scroll Sense?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Scroll Sense is a digital wellness app that helps you reduce mindless scrolling and build healthier social media habits. It combines planning, reflection, mood tracking, app blocking, gamification, and AI analysis to help you use social media more intentionally.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Who is Scroll Sense for?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Scroll Sense is designed for anyone struggling with social media overuse—teens, students, professionals, and parents. The app is particularly effective for people dealing with FOMO, anxiety, sleep issues, productivity challenges, or simply wanting a healthier relationship with technology.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do I need an account?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>You can try Scroll Sense in guest mode without an account. However, creating an account (with email and password) gives you cloud sync, persistent data storage, and access to all features. Account creation is free and takes less than 30 seconds.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How much does Scroll Sense cost?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Scroll Sense is available on the App Store. Check the App Store listing for current pricing and any subscription options.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features & Usage -->
+    <div class="category">
+      <h2 class="category-title">⚙️ Features & Usage</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What's the best way to use Scroll Sense?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p><span class="accent">Recommended daily routine:</span></p>
+          <ul>
+            <li><strong>Morning (5 min):</strong> Set your daily goals for each social media category to create intention</li>
+            <li><strong>Throughout day:</strong> Use mindfulness reminders, app blocking, and stay aware of your usage</li>
+            <li><strong>Evening (10 min):</strong> Complete your daily check-in, log your actual usage, and journal about your experience</li>
+          </ul>
+          <p style="margin-top: 1rem;">Consistency is key—doing this every day multiplies the benefits and builds lasting habits.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How does app blocking work?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Scroll Sense integrates with iOS Screen Time to block distracting apps during your defined focus periods. You can set different blocking lists for different contexts:</p>
+          <ul>
+            <li><strong>Default:</strong> Always-blocked apps</li>
+            <li><strong>Sleep:</strong> Bedtime blocking to protect rest</li>
+            <li><strong>Goals:</strong> Per-goal specific blocking</li>
+            <li><strong>Pomodoro:</strong> Blocked during focus sessions</li>
+            <li><strong>Mindful:</strong> Blocked during meditation</li>
+          </ul>
+          <p style="margin-top: 1rem;">Note: You'll need to enable Screen Time/Family Controls permission in iOS Settings.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I customize reminders and notifications?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! Go to Settings and configure:</p>
+          <ul>
+            <li>Mindfulness reminder intervals</li>
+            <li>Sleep notification timing</li>
+            <li>Goal check-in reminders</li>
+            <li>Daily check-in notifications</li>
+            <li>Streak risk alerts</li>
+          </ul>
+          <p style="margin-top: 1rem;">You can also turn notifications off completely if preferred, or disable them in iOS Settings → Notifications.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How does the AI content analysis feature work?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>The AI analysis feature uses Anthropic's Claude or OpenAI to analyze social media content you submit:</p>
+          <ul>
+            <li>Paste text or upload a screenshot</li>
+            <li>The AI analyzes emotional impact, categorization, and wellness implications</li>
+            <li>You get insights about how the content might affect your mood</li>
+            <li>Your content is NOT stored—it's deleted after analysis</li>
+            <li>This is completely optional and you can skip it entirely</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What's the difference between Goals and Plan Your Day?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p><span class="accent">Goals</span> are behavioral targets you want to achieve (e.g., "reduce Instagram to 1 hour/day"). <span class="accent">Plan Your Day</span> is a practical timeline that structures your day into time blocks (e.g., "9-9:30 study, 3-4 friend time, 7-8 dinner").</p>
+          <p style="margin-top: 1rem;">Use them together: Goals define what you want to accomplish, and Plans help you actually execute those goals throughout your day.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data & Privacy -->
+    <div class="category">
+      <h2 class="category-title">🔒 Data & Privacy</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is my data private?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes. Your data is encrypted, stored securely on Firebase/Google Cloud, and only accessible to you with your password. Journal entries are private by default. We don't sell your data or use it for advertising.</p>
+          <p style="margin-top: 1rem;">For detailed privacy information, see our <a href="privacy.html" style="color: var(--primary); font-weight: 600;">Privacy Policy</a>.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I export my data?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! Go to Settings → Data & Privacy → Export Data. Your data exports as a JSON file containing all journal entries, goals, check-ins, achievements, and settings. You can save it or share it as needed.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I delete my account?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Go to Settings → Account → Delete Account. Confirm the action, and all your data will be permanently deleted within 30 days. This action cannot be undone.</p>
+          <p style="margin-top: 1rem;">You can also email <a href="mailto:support@scrollsenseapp.com" style="color: var(--primary); font-weight: 600;">support@scrollsenseapp.com</a> to request deletion assistance.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is my password stored securely?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Your password is handled by Firebase Authentication, which uses industry-standard encryption. We never see your password—it's hashed and encrypted. Even Scroll Sense team members cannot access your password.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What about content I analyze with AI?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>When you use the AI analysis feature, your content is sent to Anthropic or OpenAI for processing. <span class="accent">Your content is NOT stored by us or the AI services after analysis.</span> It's analyzed and then discarded. This is noted in our <a href="privacy.html" style="color: var(--primary); font-weight: 600;">Privacy Policy</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Troubleshooting -->
+    <div class="category">
+      <h2 class="category-title">🔧 Troubleshooting</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>App blocking isn't working. What do I do?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Check these things:</p>
+          <ul>
+            <li>Is Screen Time enabled in iOS Settings → Screen Time?</li>
+            <li>Did you grant Scroll Sense Screen Time/Family Controls permission?</li>
+            <li>Are your blocking lists configured in Settings → App Blocking?</li>
+            <li>Is Focus Shields toggled ON?</li>
+            <li>Check your schedule is set to the current day of the week</li>
+          </ul>
+          <p style="margin-top: 1rem;">If it's still not working, try force-closing the app and reopening it. Contact support if the issue persists.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>I forgot my password. How do I reset it?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>On the login screen, tap "Forgot Password?" and enter your email. You'll receive a password reset link via email. Follow the link to create a new password.</p>
+          <p style="margin-top: 1rem;">If you don't receive the email, check your spam folder or contact <a href="mailto:support@scrollsenseapp.com" style="color: var(--primary); font-weight: 600;">support@scrollsenseapp.com</a>.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>My data isn't syncing across devices</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Make sure you're signed into the same account on both devices. Cloud sync requires an active internet connection. Try:</p>
+          <ul>
+            <li>Sign out and sign back in</li>
+            <li>Check your internet connection</li>
+            <li>Force close and reopen the app</li>
+            <li>Update to the latest app version</li>
+          </ul>
+          <p style="margin-top: 1rem;">Contact support if sync issues continue.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>The app keeps crashing. What should I do?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Try these steps:</p>
+          <ul>
+            <li>Update to the latest iOS version</li>
+            <li>Update to the latest Scroll Sense version</li>
+            <li>Force close the app (swipe up from bottom, hold, then close)</li>
+            <li>Restart your device</li>
+            <li>Clear app cache (iOS Settings → General → Storage)</li>
+          </ul>
+          <p style="margin-top: 1rem;">If crashes persist, email <a href="mailto:support@scrollsenseapp.com?subject=App Crash Report" style="color: var(--primary); font-weight: 600;">support@scrollsenseapp.com</a> with details about when it crashes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account & Subscription -->
+    <div class="category">
+      <h2 class="category-title">👤 Account & Subscription</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I use Scroll Sense on multiple devices?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! Sign into the same account on multiple iOS devices and your data will sync across them. Guest mode data won't sync, so we recommend creating an account for the best experience.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I download Scroll Sense on Android?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Currently, Scroll Sense is available on iOS. Check the App Store for the latest updates on platform availability.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do you offer family accounts or group plans?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Each person needs their own individual account. However, you can share your daily plans and progress with family members via the sharing feature to maintain accountability.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Health & Safety -->
+    <div class="category">
+      <h2 class="category-title">❤️ Health & Safety</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is Scroll Sense a medical device or therapy tool?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p><strong>No.</strong> Scroll Sense is a wellness app for self-awareness and habit building, not a medical device or substitute for professional mental health care. If you're experiencing serious mental health concerns, please consult a qualified healthcare professional.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Where can I find mental health resources?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>If you're in crisis, contact emergency services immediately. Scroll Sense has quick-access crisis resources in Settings. You can also reach out to:</p>
+          <ul>
+            <li>National Suicide Prevention Lifeline: 988</li>
+            <li>Crisis Text Line: Text HOME to 741741</li>
+            <li>SAMHSA National Helpline: 1-800-662-4357</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-box">
+      <h3>Still have questions?</h3>
+      <p>Our support team is here to help. Reach out anytime.</p>
+      <a href="mailto:support@scrollsenseapp.com">📧 Email Support</a>
+      <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Response time: 24-48 hours</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="information.html">How It Works</a></li>
+          <li><a href="findings.html">Research</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="chatbot.html">AI Assistant</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Scroll Sense. Questions answered.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
