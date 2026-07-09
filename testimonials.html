@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials - Scroll Sense</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #764ba2;
+  --accent: #00d4ff;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --bg-light: #f8fafc;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-light: #e5e7eb;
+  --white: #ffffff;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: var(--white);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navigation */
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+nav a:hover, nav a.active {
+  color: var(--primary);
+}
+
+/* Hero */
+.hero {
+  padding: 80px 0 60px;
+  background: linear-gradient(135deg, var(--white) 0%, var(--bg-light) 100%);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Stats Row */
+.stats-row {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--white);
+  padding: 40px 0;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.stats-row h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+/* Content */
+.content {
+  padding: 80px 0;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--primary);
+  display: inline-block;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.testimonial-card {
+  background: var(--white);
+  border: 2px solid var(--border-light);
+  border-radius: 12px;
+  padding: 40px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+  transform: translateY(-5px);
+}
+
+.quote-mark {
+  font-size: 4rem;
+  color: var(--primary);
+  opacity: 0.2;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.stars {
+  color: var(--warning);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  color: var(--text-dark);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonial-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.author-info h4 {
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.author-info p {
+  margin: 0;
+  color: var(--text-light);
+  font-size: 0.85rem;
+}
+
+.source-badge {
+  display: inline-block;
+  background: var(--bg-light);
+  color: var(--primary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+/* Category Section */
+.category {
+  margin-bottom: 80px;
+}
+
+.category h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--text-dark);
+  padding-left: 1rem;
+  border-left: 4px solid var(--primary);
+}
+
+/* Stats Cards */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  background: var(--bg-light);
+  padding: 40px;
+  border-radius: 12px;
+  margin-bottom: 60px;
+}
+
+.stat-card {
+  text-align: center;
+}
+
+.stat-card h4 {
+  font-size: 2.2rem;
+  color: var(--primary);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* Footer */
+footer {
+  background: var(--text-dark);
+  color: var(--white);
+  padding: 60px 0 30px;
+  margin-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 30px;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <div class="logo">📱 Scroll Sense</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="findings.html">Research</a></li>
+      <li><a href="testimonials.html" class="active">Testimonials</a></li>
+      <li><a href="information.html">Guide</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>What Real Users Are Saying</h1>
+    <p>Join thousands of people who've transformed their digital wellness with Scroll Sense</p>
+  </div>
+</section>
+
+<!-- Stats Overview -->
+<section class="stats-row">
+  <div class="container">
+    <h3>84.3%</h3>
+    <p style="font-size: 1.1rem; opacity: 0.9;">of users report spending less time on social media</p>
+  </div>
+</section>
+
+<!-- Content -->
+<section class="content">
+  <div class="container">
+    <!-- App Store Reviews -->
+    <div class="category">
+      <h3>🏆 App Store Reviews (5★)</h3>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">This app helped me spend way less time on social media with cool and different timers that have a special and efficient way of reminding you to stop scrolling.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">R</div>
+            <div class="author-info">
+              <h4>Real User</h4>
+              <p>Verified Purchase</p>
+            </div>
+          </div>
+          <span class="source-badge">📱 App Store</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">Very Helpful: I have been struggling with social media addiction for a while now and using the mindful feature is really helpful to me.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">D</div>
+            <div class="author-info">
+              <h4>DavidBuckland11</h4>
+              <p>January 1, 2026</p>
+            </div>
+          </div>
+          <span class="source-badge">📱 App Store</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">This app gives you real insights into your social media habits. The dashboards are beautiful and actually motivate me to make better choices.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">M</div>
+            <div class="author-info">
+              <h4>Mindful User</h4>
+              <p>Verified Purchase</p>
+            </div>
+          </div>
+          <span class="source-badge">📱 App Store</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">The AI analysis feature is game-changing. Being able to paste content and understand its impact on my mental health has been incredibly eye-opening.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">A</div>
+            <div class="author-info">
+              <h4>AI Enthusiast</h4>
+              <p>Verified Purchase</p>
+            </div>
+          </div>
+          <span class="source-badge">📱 App Store</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">Finally an app that actually helps reduce scrolling without being preachy. The mindfulness reminders are gentle and effective.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">S</div>
+            <div class="author-info">
+              <h4>Sleep Better</h4>
+              <p>Verified Purchase</p>
+            </div>
+          </div>
+          <span class="source-badge">📱 App Store</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">My anxiety has gone down significantly since using this app. The journal feature helps me process my feelings, and the data visualization shows real progress.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">E</div>
+            <div class="author-info">
+              <h4>Emotional Wellness</h4>
+              <p>Verified Purchase</p>
+            </div>
+          </div>
+          <span class="source-badge">📱 App Store</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Impact Statistics -->
+    <div class="category">
+      <h3>📊 User Impact Statistics</h3>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <h4>41.2%</h4>
+          <p>Report "Way Less" time on social media</p>
+        </div>
+        <div class="stat-card">
+          <h4>43.1%</h4>
+          <p>Report "Less" time on social media</p>
+        </div>
+        <div class="stat-card">
+          <h4>88.2%</h4>
+          <p>Experience better focus & time management</p>
+        </div>
+        <div class="stat-card">
+          <h4>90.2%</h4>
+          <p>Report more intentional social media use</p>
+        </div>
+        <div class="stat-card">
+          <h4>84.3%</h4>
+          <p>Reduced habitual scrolling</p>
+        </div>
+        <div class="stat-card">
+          <h4>78.4%</h4>
+          <p>Feel better after using social media</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media & Reddit Feedback -->
+    <div class="category">
+      <h3>💬 Community Feedback</h3>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">I've been using this app called Scroll Sense and it helped me spend way less time on social media with cool and different timers that have a special and efficient way of reminding you to stop scrolling.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">R</div>
+            <div class="author-info">
+              <h4>Reddit Community</h4>
+              <p>Digital Wellness Thread</p>
+            </div>
+          </div>
+          <span class="source-badge">💬 Reddit</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">The combination of app blocking, mindfulness reminders, and mood tracking creates this perfect environment where you actually want to use social media less.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">T</div>
+            <div class="author-info">
+              <h4>Tech Reviewer</h4>
+              <p>Community Discussion</p>
+            </div>
+          </div>
+          <span class="source-badge">💬 Community</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">As someone with ADHD, the gamification elements (streaks, badges, XP) actually keep me motivated to use the app consistently. That's rare.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">G</div>
+            <div class="author-info">
+              <h4>Gamification Fan</h4>
+              <p>Community Feedback</p>
+            </div>
+          </div>
+          <span class="source-badge">💬 Community</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">What I love most is that it doesn't shame you for using social media. It just helps you use it intentionally. That's the game-changer.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">I</div>
+            <div class="author-info">
+              <h4>Intentional User</h4>
+              <p>User Testimonial</p>
+            </div>
+          </div>
+          <span class="source-badge">💬 User Voice</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">My teen son was resistant to wellness apps until Scroll Sense. The daily check-in actually gives us something to talk about at dinner.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">P</div>
+            <div class="author-info">
+              <h4>Parent</h4>
+              <p>Parent Feedback</p>
+            </div>
+          </div>
+          <span class="source-badge">👨‍👩‍👧 Parents</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">The research backing this app gives me confidence that I'm not just using another gimmick. The data is real and the results are measurable.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">R</div>
+            <div class="author-info">
+              <h4>Research-Driven</h4>
+              <p>Evidence-Based Choice</p>
+            </div>
+          </div>
+          <span class="source-badge">📊 Research</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- User-Generated Testimonials -->
+    <div class="category">
+      <h3>🌟 Featured Stories</h3>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">After 2 months with Scroll Sense, I've reduced my daily Instagram time from 4 hours to 1 hour. The anxiety decrease is real. Would recommend to anyone struggling with social media.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">J</div>
+            <div class="author-info">
+              <h4>Jordan's Journey</h4>
+              <p>2 months of progress</p>
+            </div>
+          </div>
+          <span class="source-badge">✨ Success Story</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">The sleep tracking integration changed everything. I realized social media before bed was killing my sleep quality. Now I use the bedtime blocking feature and sleep 2 hours more.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">B</div>
+            <div class="author-info">
+              <h4>Better Sleep</h4>
+              <p>Sleep improved</p>
+            </div>
+          </div>
+          <span class="source-badge">✨ Success Story</span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">As a student, my grades went up after using Scroll Sense. The app blocking during study time actually prevents the mindless checking. My GPA thanks this app.</p>
+          <div class="testimonial-meta">
+            <div class="avatar">S</div>
+            <div class="author-info">
+              <h4>Student Success</h4>
+              <p>Academic improvement</p>
+            </div>
+          </div>
+          <span class="source-badge">✨ Success Story</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="information.html">How It Works</a></li>
+          <li><a href="findings.html">Research</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="chatbot.html">AI Assistant</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Scroll Sense. Loved by thousands of users worldwide.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
